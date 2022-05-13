@@ -9,10 +9,18 @@ export const PhotoGridItem = ({ size, id, title, category }) => {
   return (
     // <div className={size + ' shadow-sm shadow-black cursor-pointer'}>
     <Link
-      className={size + ' shadow-sm shadow-black cursor-pointer'}
+      className={
+        size +
+        ' shadow-sm shadow-black cursor-pointer rounded ease-in-out duration-300 hover:scale-110 hover:-rotate-2 hover:translate-x-2 hover:translate-y-2'
+      }
       to={`/photos/${category}/${helpers.toSeoFriendly(title)}`}
     >
-      <SuspenseImg src={url} alt={title} title={title} />
+      <SuspenseImg
+        src={url}
+        alt={title}
+        title={title}
+        className="w-full h-full rounded object-cover"
+      />
     </Link>
     // </div>
   );

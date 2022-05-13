@@ -18,7 +18,7 @@ export const Photos = ({ layout }) => {
 
   return (
     <Suspense fallback={<Loading />}>
-      <div class="grid-wrapper">
+      <div className="grid-wrapper">
         {filteredPhotos.map((photo, index) => (
           <PhotoGridItem key={index} {...photo} />
         ))}

@@ -51,20 +51,12 @@ body {
   border-bottom: 2px solid #f5a14a;
 }
 
-#content {
-  background: radial-gradient(
-    circle,
-    rgb(36, 116, 110) 0%,
-    rgba(44, 100, 96, 1) 100%
-  );
-}
-
 #line {
   width: 100%;
   height: 7px;
   position: absolute;
   bottom: 0;
-  z-index: 1;
+  z-index: -1;
   background: #f49e4b;
   transform: rotate(-35deg);
 }
@@ -99,18 +91,17 @@ body {
 }
 
 /* Main CSS */
-.grid-wrapper > a {
+/* .grid-wrapper > a {
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
-}
-.grid-wrapper > a > img {
+} */
+/* .grid-wrapper > a > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 5px;
-}
+} */
 
 .grid-wrapper {
   display: grid;
@@ -139,10 +130,6 @@ body {
   border-radius: 0.25rem;
   box-sizing: border-box;
   color: #fff;
-  cursor: pointer;
-  font-family: ui-sans-serif, system-ui, -apple-system, system-ui, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   font-size: 1.125rem; /* 18px */
   font-weight: 600;
   line-height: 1.75rem; /* 28px */
