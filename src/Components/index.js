@@ -1,7 +1,8 @@
 import { Sidebar } from "./Sidebar";
-import { Photo } from "./Photo";
+import { PhotoGridItem } from "./PhotoGridItem";
 import { CategoryMenuItem } from "./CategoryMenuItem";
 import { NavMenuItem } from "./NavMenuItem";
 import { Loading } from "./Loading";
+import { RouteProvider } from "./RouteProvider";
 
-export { Sidebar, Photo, CategoryMenuItem, NavMenuItem, Loading }
+export { Sidebar, PhotoGridItem, CategoryMenuItem, NavMenuItem, Loading, RouteProvider }

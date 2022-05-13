@@ -3,6 +3,7 @@ import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import { Sidebar } from './Components/Sidebar';
 import { About, Collabs, Contact, Home, Photos } from './Pages';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { RouteProvider } from './Components';
 
 function App() {
   const location = useLocation();
@@ -16,7 +17,7 @@ function App() {
     const toggleMenu = () => {
       const nextMenuIndex = currentMenuIndex === 0 ? 1 : 0;
       setMenu(menus[nextMenuIndex]);
-    }
+    };
 
     return (
       <button
@@ -27,7 +28,6 @@ function App() {
       </button>
     );
   };
-
 
   const layoutSwitcher = () => {
     const layouts = ['default', 'full', 'full2', 'full3', 'black'];
@@ -52,9 +52,9 @@ function App() {
   if (layout === 'default') {
     return (
       <div className="container mx-auto h-full">
-        <div id="line" className='one'></div>
-        <div id="line" className='two'></div>
-        <div id="line" className='three'></div>
+        <div id="line" className="one"></div>
+        <div id="line" className="two"></div>
+        <div id="line" className="three"></div>
         {menuSwitcher()}
         {layoutSwitcher()}
         <div className="flex flex-row flex-wrap py-4 h-full">
@@ -76,16 +76,7 @@ function App() {
                   classNames="my-node"
                   timeout={300}
                 >
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/collabs" element={<Collabs />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route
-                      path="/photos/:category"
-                      element={<Photos layout={layout} />}
-                    />
-                  </Routes>
+                  <RouteProvider layout={layout} />
                 </CSSTransition>
               </TransitionGroup>
             </div>
@@ -109,31 +100,31 @@ function App() {
                 <ul className="text-4xl space-y-2">
                   <li className="font-bold pl-2.5 text-sm mb-2">Categories</li>
                   <Link to="/photos/landscapes">
-                  <li
-                    className={`p-2 ease-in-out duration-500 mb-2 ${
-                      1 === 2 && 'bg-orange-300'
-                    } hover:bg-gray-500`}
-                  >
-                    Landscapes
-                  </li>
+                    <li
+                      className={`p-2 ease-in-out duration-500 mb-2 ${
+                        1 === 2 && 'bg-orange-300'
+                      } hover:bg-gray-500`}
+                    >
+                      Landscapes
+                    </li>
                   </Link>
                   <Link to="/photos/still-life">
-                  <li
-                    className={`p-2 ease-in-out duration-500 mb-2 ${
-                      1 === 2 && 'bg-orange-300'
-                    } hover:bg-gray-500`}
-                  >
-                    Still-Life
-                  </li>
+                    <li
+                      className={`p-2 ease-in-out duration-500 mb-2 ${
+                        1 === 2 && 'bg-orange-300'
+                      } hover:bg-gray-500`}
+                    >
+                      Still-Life
+                    </li>
                   </Link>
                   <Link to="/photos/nature">
-                  <li
-                    className={`p-2 ease-in-out duration-500 mb-2 ${
-                      1 === 2 && 'bg-orange-300'
-                    } hover:bg-gray-500`}
-                  >
-                    Nature
-                  </li>
+                    <li
+                      className={`p-2 ease-in-out duration-500 mb-2 ${
+                        1 === 2 && 'bg-orange-300'
+                      } hover:bg-gray-500`}
+                    >
+                      Nature
+                    </li>
                   </Link>
                 </ul>
               </div>
@@ -142,18 +133,8 @@ function App() {
 
           <main className="w-full h-full md:w-4/5">
             <div className="ml-28 mt-20 mr-10">
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/collabs" element={<Collabs />} />
-                <Route path="/contact" element={<Contact />} />
-
-                <Route
-                  path="/photos/:category"
-                  element={<Photos layout={layout} />}
-                />
-              </Routes>
-              </div>
+              <RouteProvider layout={layout} />
+            </div>
           </main>
         </div>
       </div>
@@ -161,9 +142,9 @@ function App() {
   } else {
     return (
       <div className="h-full">
-        <div id="line" className='one'></div>
-        <div id="line" className='two'></div>
-        <div id="line" className='three'></div>
+        <div id="line" className="one"></div>
+        <div id="line" className="two"></div>
+        <div id="line" className="three"></div>
         {menuSwitcher()}
         {layoutSwitcher()}
         <div className="flex flex-row flex-wrap  h-full">
@@ -184,17 +165,7 @@ function App() {
           >
             <div className="mx-10 w-full h-2 bg-white shadow-lg shadow-black"></div>
             <div className="mx-10 pt-10">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/collabs" element={<Collabs />} />
-                <Route path="/contact" element={<Contact />} />
-
-                <Route
-                  path="/photos/:category"
-                  element={<Photos layout={layout} />}
-                />
-              </Routes>
+              <RouteProvider layout={layout} />
             </div>
           </main>
         </div>
