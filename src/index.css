@@ -17,6 +17,7 @@ body {
   background: #2C6460;
   background: radial-gradient(circle, rgb(36, 116, 110) 0%, rgba(44,100,96,1) 100%);
   color: #fff;
+  overflow: hidden;
 }
 
 .active{
@@ -32,12 +33,57 @@ body {
 
 
 
+#line {
+  width: 100%;
+  height: 7px;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  background: #F49E4B;
+  transform: rotate(-35deg);
+}
+
+#line.one{
+  right: -30%;
+}
+#line.two{
+  right: -25%;
+}
+#line.three{
+  right: -20%;
+}
+
+
+
+
+.my-node-enter {
+  opacity: 0;
+  transform: scale(1.1);
+}
+.my-node-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+.my-node-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+.my-node-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  /* transition: opacity 300ms, transform 300ms; */
+}
+
+
+
 
 /* Main CSS */
 .grid-wrapper > div {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+  z-index: 2;
 }
 .grid-wrapper > div > img {
 	width: 100%;
