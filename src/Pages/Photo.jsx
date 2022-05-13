@@ -69,7 +69,38 @@ export const Photo = () => {
             </div>
 
             <div className="absolute bottom-0 flex flex-row justify-end w-full">
-              <button className="button-76">Order</button>
+              <form
+                action="https://www.paypal.com/cgi-bin/webscr"
+                method="post"
+                target="_top"
+              >
+                <input type="hidden" name="cmd" value="_s-xclick" />
+                <input
+                  type="hidden"
+                  name="hosted_button_id"
+                  value="JBCRBRUHHLLPS"
+                />
+                <table>
+                  <tr>
+                    <td>
+                      <input type="hidden" name="on0" value="Size" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        type="hidden"
+                        name="os0"
+                        value={
+                          size === 1 ? 'Small' : size === 2 ? 'Medium' : 'Big'
+                        }
+                      />
+                    </td>
+                  </tr>
+                </table>
+                <input type="hidden" name="currency_code" value="EUR" />
+                <button className="button-76">Order</button>
+              </form>
             </div>
           </div>
         </div>
