@@ -102,7 +102,12 @@ function App() {
           </main>
         </div>
       </div>
-      <div className="absolute bottom-0 h-1 w-full bg-orange-400"></div>
+      <div
+        className="absolute bottom-0 h-1 w-full bg-orange-400"
+        style={{
+          boxShadow: '0px -2px 10px 0px rgba(0,0,0,0.5)',
+        }}
+      ></div>
     </>
   );
 }

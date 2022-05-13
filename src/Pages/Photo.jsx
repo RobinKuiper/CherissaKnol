@@ -36,7 +36,7 @@ export const Photo = () => {
         }}
       >
         <div className="flex flex-row space-x-10">
-          <div className="w-full h-full w-6/12">
+          <div className="h-full w-6/12">
             <LightgalleryItem
               src={`https://picsum.photos/1080/768?random=${title}`}
               alt={photo.title}
