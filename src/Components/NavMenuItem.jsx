@@ -4,7 +4,7 @@ export const NavMenuItem = ({ path, title }) => {
   const {pathname} = useLocation();
 
   return (
-    <span className={`ease-in-out duration-300 border-orange-300 ${pathname === path && 'border-b-2'} hover:border-b-2`}>
+    <span className={`border-orange-300 ${pathname === path && 'border-b-2'} hover:border-b-2`}>
       <Link to={path} className="pb-1">
         {title}
       </Link>
