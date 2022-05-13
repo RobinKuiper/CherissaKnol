@@ -36,7 +36,7 @@ export const PhotoGridItem = ({ size, id, title, category }) => {
     <Link
       className={
         size +
-        ` shadow-sm shadow-black cursor-pointer rounded ease-in-out duration-300 hover:scale-110 hover:${rotate} hover:translate-x-2 hover:translate-y-2 hover:z-50`
+        ` shadow-sm shadow-black cursor-pointer rounded ease-in-out duration-300 hover:shadow-2xl hover:shadow-gray-800 hover:scale-110 hover:${rotate}  hover:z-50`
       }
       to={`/photos/${category}/${helpers.toSeoFriendly(title)}`}
     >
