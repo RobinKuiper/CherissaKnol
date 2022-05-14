@@ -1,12 +1,7 @@
 import { Link } from 'react-router-dom';
 import { CategoryMenuItem } from './CategoryMenuItem';
 import { NavMenuItem } from './NavMenuItem';
-import {
-  FaEnvelope,
-  FaFacebook,
-  FaHamburger,
-  FaInstagram,
-} from 'react-icons/fa';
+import { FaEnvelope, FaFacebook, FaInstagram } from 'react-icons/fa';
 import { useEffect } from 'react';
 
 export const Sidebar = ({ menu, toggleCollapse, collapse }) => {
