@@ -3,6 +3,26 @@ import { Sidebar } from './Components/Sidebar';
 import { RouteProvider } from './Components';
 
 function App() {
+  const [windowDimenion, detectHW] = useState({
+    winWidth: window.innerWidth,
+    winHeight: window.innerHeight,
+  });
+
+  const detectSize = () => {
+    detectHW({
+      winWidth: window.innerWidth,
+      winHeight: window.innerHeight,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', detectSize);
+
+    return () => {
+      window.removeEventListener('resize', detectSize);
+    };
+  }, [windowDimenion]);
+
   const [layout, setLayout] = useState('full');
   const [collapse, setCollapse] = useState(false);
   const firstRun = useRef(true);
@@ -85,7 +105,11 @@ function App() {
             }`}
           >
             <Sidebar
-              toggleCollapse={() => setCollapse(!collapse)}
+              toggleCollapse={() => {
+                if (windowDimenion.winWidth < 640) {
+                  setCollapse(!collapse);
+                }
+              }}
               collapse={collapse}
             />
           </aside>
