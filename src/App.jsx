@@ -28,6 +28,8 @@ function App() {
   const firstRun = useRef(true);
 
   useEffect(() => {
+    console.log(process.env.NODE_ENV);
+
     if (firstRun.current) {
       firstRun.current = false;
       return;
