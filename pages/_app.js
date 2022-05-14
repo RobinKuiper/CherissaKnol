@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
   return (
     // <AnimateSharedLayout>
     <AnimatePresence exitBeforeEnter initial={false}>
-      <Component {...pageProps} key={router.pathname} />
+      <Component {...pageProps} key={router.asPath} />
     </AnimatePresence>
     // </AnimateSharedLayout>
   )
