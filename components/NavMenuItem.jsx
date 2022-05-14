@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { CustomLink } from './CustomLink';
 
 export const NavMenuItem = ({ path, title, toggleCollapse }) => {
   const { asPath } = useRouter();
@@ -11,9 +11,9 @@ export const NavMenuItem = ({ path, title, toggleCollapse }) => {
         hover:border-orange-300`}
       onClick={toggleCollapse}
     >
-      <Link href={path} className="pb-1">
+      <CustomLink href={path} className="pb-1">
         {title}
-      </Link>
+      </CustomLink>
     </span>
   );
 };

@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaFacebook, FaInstagram } from 'react-icons/fa';
 import { CategoryMenuItem } from './CategoryMenuItem';
 import { NavMenuItem } from './NavMenuItem';
 import { useMediaQuery } from '../helpers/contexts';
+import { CustomLink } from './CustomLink';
 
 export const Layout = ({ children }) => {
   const isBreakpoint = useMediaQuery(750);
@@ -58,7 +58,7 @@ export const Layout = ({ children }) => {
               {/* Header */}
               <div className="flex flex-row justify-between">
                 <div className="m-3 w-[25%] sm:w-full">
-                  <Link href="/">
+                  <CustomLink href="/">
                     <img
                       src="https://i.imgur.com/F4p34dJ.png"
                       alt="logo"
@@ -66,7 +66,7 @@ export const Layout = ({ children }) => {
                       // width="200px"
                       // height="100px"
                     />
-                  </Link>
+                  </CustomLink>
                 </div>
 
                 <button

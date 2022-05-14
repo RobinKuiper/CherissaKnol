@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { CustomLink } from './CustomLink';
 
 export const CategoryMenuItem = ({ path, title, toggleCollapse }) => {
   const { query } = useRouter();
@@ -15,7 +15,7 @@ export const CategoryMenuItem = ({ path, title, toggleCollapse }) => {
       } hover:bg-orange-300`}
       onClick={toggleCollapse}
     >
-      <Link
+      <CustomLink
         href={path}
         style={{
           width: '100%',
@@ -24,7 +24,7 @@ export const CategoryMenuItem = ({ path, title, toggleCollapse }) => {
         }}
       >
         {title}
-      </Link>
+      </CustomLink>
     </li>
   );
 };

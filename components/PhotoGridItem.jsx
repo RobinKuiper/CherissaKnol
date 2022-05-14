@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import { useState } from 'react';
 import { urlHelpers } from '../helpers';
+import { CustomLink } from './CustomLink';
 import { SuspenseImg } from './SuspenseImg';
 
 export const PhotoGridItem = ({ size, id, title, category }) => {
@@ -37,7 +37,9 @@ export const PhotoGridItem = ({ size, id, title, category }) => {
         transform,
       }}
     >
-      <Link href={`/photos/${category}/${urlHelpers.toSeoFriendly(title)}`}>
+      <CustomLink
+        href={`/photos/${category}/${urlHelpers.toSeoFriendly(title)}`}
+      >
         <img
           src={url}
           alt={title}
@@ -47,7 +49,7 @@ export const PhotoGridItem = ({ size, id, title, category }) => {
           onMouseLeave={resetTransform}
           onMouseOut={() => resetTransform}
         />
-      </Link>
+      </CustomLink>
     </span>
   );
 };
