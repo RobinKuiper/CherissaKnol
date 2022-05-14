@@ -13,7 +13,7 @@ export const Contact = () => {
             </p>
             <p className="text-xl flex flex-row space-x-4">
               <FaPhone />
-              <span>123-456-7890</span>
+              <span>123-456-7891</span>
             </p>
             <p className="flex space-x-8 justify-center text-4xl">
               <FaFacebook className="cursor-pointer hover:text-orange-400 hover:scale-110" />
