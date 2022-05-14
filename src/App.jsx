@@ -5,7 +5,7 @@ import { RouteProvider } from './Components';
 function App() {
   const [layout, setLayout] = useState('full');
   const [collapse, setCollapse] = useState(false);
-  const firstRun = useRef(false);
+  const firstRun = useRef(true);
 
   useEffect(() => {
     if (firstRun.current) {
