@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Sidebar } from './Components/Sidebar';
 import { RouteProvider } from './Components';
 
@@ -6,8 +6,13 @@ function App() {
   const [layout, setLayout] = useState('full');
   const [menu, setMenu] = useState('default');
   const [collapse, setCollapse] = useState(false);
+  const firstRun = useRef(true);
 
   useEffect(() => {
+    if (!firstRun.current) {
+      firstRun.current = false;
+      return;
+    }
     const aside = document.getElementsByTagName('aside')[0];
     const page = document.getElementById('page');
     const footerLine = document.getElementById('footer-line');
@@ -16,6 +21,22 @@ function App() {
     page.classList.toggle('h-full');
     footerLine.classList.toggle('sticky');
     footerLine.classList.toggle('fixed');
+
+    const nav = document.getElementById('nav');
+    const categories = document.getElementById('categories');
+    const socials = document.getElementById('socials');
+
+    nav.classList.toggle('hidden');
+    nav.classList.toggle('flex');
+
+    categories.classList.toggle('hidden');
+    socials.classList.toggle('hidden');
+
+    const hamburger = document.getElementById('hamburger');
+    hamburger.classList.toggle('open');
+
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('nav-sticky');
   }, [collapse]);
 
   const menuSwitcher = () => {

@@ -5,23 +5,7 @@ import { FaEnvelope, FaFacebook, FaInstagram } from 'react-icons/fa';
 import { useEffect } from 'react';
 
 export const Sidebar = ({ menu, toggleCollapse, collapse }) => {
-  useEffect(() => {
-    const nav = document.getElementById('nav');
-    const categories = document.getElementById('categories');
-    const socials = document.getElementById('socials');
-
-    nav.classList.toggle('hidden');
-    nav.classList.toggle('flex');
-
-    categories.classList.toggle('hidden');
-    socials.classList.toggle('hidden');
-
-    const hamburger = document.getElementById('hamburger');
-    hamburger.classList.toggle('open');
-
-    const sidebar = document.getElementById('sidebar');
-    sidebar.classList.toggle('nav-sticky');
-  }, [collapse]);
+  useEffect(() => {}, [collapse]);
 
   return (
     <div id="sidebar" className="h-full bg-white shadow-md shadow-black">
