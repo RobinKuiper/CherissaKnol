@@ -9,7 +9,7 @@ function App() {
   const firstRun = useRef(true);
 
   useEffect(() => {
-    if (!firstRun.current) {
+    if (firstRun.current) {
       firstRun.current = false;
       return;
     }
