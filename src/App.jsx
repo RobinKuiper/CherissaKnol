@@ -1,11 +1,8 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { Sidebar } from './Components/Sidebar';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { RouteProvider } from './Components';
 
 function App() {
-  const location = useLocation();
   const [layout, setLayout] = useState('full');
   const [menu, setMenu] = useState('default');
 
@@ -89,15 +86,7 @@ function App() {
               }`}
             ></div>
             <div className={`pt-10 ${layout === 'default' && 'ml-10'}`}>
-              <TransitionGroup>
-                <CSSTransition
-                  key={location.key}
-                  classNames="my-node"
-                  timeout={300}
-                >
-                  <RouteProvider layout={layout} />
-                </CSSTransition>
-              </TransitionGroup>
+              <RouteProvider layout={layout} />
             </div>
           </main>
         </div>
