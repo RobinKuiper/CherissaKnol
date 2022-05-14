@@ -11,7 +11,7 @@ import {
   NotFound,
 } from '../Pages';
 
-export const RouteProvider = ({ layout }) => {
+export const RouteProvider = () => {
   const location = useLocation();
 
   return (
@@ -34,10 +34,7 @@ export const RouteProvider = ({ layout }) => {
             <Route path="/collabs" element={<Collabs />} />
             <Route path="/contact" element={<Contact />} />
 
-            <Route
-              path="/photos/:category"
-              element={<Photos layout={layout} />}
-            />
+            <Route path="/photos/:category" element={<Photos />} />
             <Route path="/photos/:category/:title" element={<Photo />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

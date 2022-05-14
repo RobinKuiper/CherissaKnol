@@ -3,18 +3,17 @@ import { useParams } from 'react-router-dom';
 import { Loading, PhotoGridItem } from '../Components';
 import photos from '../data/photos.json';
 
-export const Photos = ({ layout }) => {
+export const Photos = () => {
   const { category } = useParams();
   const [filteredPhotos, setFilteredPhotos] = useState([]);
 
   useEffect(() => {
-    const l = layout === 'default' ? layout : 'full';
     setFilteredPhotos(
-      photos[l].filter(
+      photos['full'].filter(
         (photo) => photo.category.toLowerCase() === category.toLowerCase()
       )
     );
-  }, [category, layout]);
+  }, [category]);
 
   return (
     <Suspense fallback={<Loading />}>
