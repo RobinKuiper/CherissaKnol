@@ -20,11 +20,17 @@ export const Sidebar = ({ menu, toggleCollapse, collapse }) => {
 
     categories.classList.toggle('hidden');
     socials.classList.toggle('hidden');
+
+    const hamburger = document.getElementById('hamburger');
+    hamburger.classList.toggle('open');
+
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('nav-sticky');
   }, [collapse]);
 
   return (
     <div id="sidebar" className="h-full bg-white shadow-md shadow-black">
-      <div className="text-black h-full relative">
+      <div className="text-black h-full sm:relative">
         <div className="flex flex-row justify-between">
           <div className="m-3 w-[25%] sm:w-full">
             <Link to="/">
@@ -33,10 +39,12 @@ export const Sidebar = ({ menu, toggleCollapse, collapse }) => {
           </div>
 
           <button
-            className="block m-5 sm:hidden text-2xl"
+            id="hamburger"
+            className="block m-5 mr-10 sm:hidden"
             onClick={() => toggleCollapse()}
           >
-            <FaHamburger />
+            <span class="hamburger__top-bun"></span>
+            <span class="hamburger__bottom-bun"></span>
           </button>
         </div>
 

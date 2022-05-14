@@ -10,9 +10,12 @@ function App() {
   useEffect(() => {
     const aside = document.getElementsByTagName('aside')[0];
     const page = document.getElementById('page');
+    const footerLine = document.getElementById('footer-line');
 
     aside.classList.toggle('h-full');
     page.classList.toggle('h-full');
+    footerLine.classList.toggle('sticky');
+    footerLine.classList.toggle('fixed');
   }, [collapse]);
 
   const menuSwitcher = () => {
@@ -71,7 +74,7 @@ function App() {
           }`}
         >
           <aside
-            className={`${
+            className={`sticky top-0 ${
               layout === 'default'
                 ? 'sm:w-1/3 md:w-1/4 px-2'
                 : layout === 'full'
@@ -106,6 +109,7 @@ function App() {
         </div>
       </div>
       <div
+        id="footer-line"
         className="sticky sm:absolute bottom-0 h-1 w-full bg-orange-400"
         style={{
           boxShadow: '0px -2px 10px 0px rgba(0,0,0,0.5)',
