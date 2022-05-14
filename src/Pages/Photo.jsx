@@ -33,8 +33,8 @@ export const Photo = () => {
           counter: false,
         }}
       >
-        <div className="flex flex-row space-x-10">
-          <div className="h-full w-6/12">
+        <div className="sm:flex flex-row sm:space-x-10">
+          <div className="h-full sm:w-6/12">
             {photo ? (
               <LightgalleryItem
                 src={`https://picsum.photos/1080/768?random=${title}`}
@@ -55,7 +55,9 @@ export const Photo = () => {
           <div className="relative">
             {photo ? (
               <>
-                <h1 className="text-5xl text-shadow">{photo.title}</h1>
+                <h1 className="text-xl sm:text-5xl text-shadow">
+                  {photo.title}
+                </h1>
                 <p>{photo.category}</p>
                 <div className="mt-10 text-xl flex flex-row space-x-10 items-center">
                   <p className="">Size</p>
@@ -72,7 +74,7 @@ export const Photo = () => {
                   <p className="text-2xl">$ {price}</p>
                 </div>
 
-                <div className="absolute bottom-0 flex flex-row justify-end w-full">
+                <div className="sm:absolute bottom-0 flex flex-row justify-end w-full">
                   <form
                     action="https://www.paypal.com/cgi-bin/webscr"
                     method="post"

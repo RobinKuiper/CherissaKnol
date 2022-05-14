@@ -4,8 +4,8 @@ export const Contact = () => {
   return (
     <div>
       <h1 className="text-4xl font-bold">Contact Cherissa</h1>
-      <div className="flex flex-row mt-10">
-        <div className="w-2/4">
+      <div className="sm:flex flex-row mt-10">
+        <div className="sm:w-2/4">
           <div className="flex flex-col items-center space-y-8">
             <p className="text-xl flex flex-row space-x-4 items-center">
               <FaEnvelope />
@@ -21,13 +21,14 @@ export const Contact = () => {
             </p>
           </div>
 
-          <div className="mt-36 text-xs flex flex-col items-center">
+          <div className="mt-10 sm:mt-36 text-xs flex flex-col items-center">
             <p className="text-sm">Company</p>
             <p>KVK: 123456789</p>
             <p>BTW: 123456789</p>
           </div>
         </div>
-        <div className="w-2/4">
+        <div className="sm:w-2/4 mt-10">
+          <h2 className="text-2xl font-bold sm:hidden mb-5">Get In Touch</h2>
           <form className="flex flex-col space-y-8">
             <label className="text-sm">Name</label>
             <input type="text" className="w-full" />

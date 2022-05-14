@@ -1,10 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Sidebar } from './Components/Sidebar';
 import { RouteProvider } from './Components';
 
 function App() {
   const [layout, setLayout] = useState('full');
   const [menu, setMenu] = useState('default');
+  const [collapse, setCollapse] = useState(false);
+
+  useEffect(() => {
+    const aside = document.getElementsByTagName('aside')[0];
+    const page = document.getElementById('page');
+
+    aside.classList.toggle('h-full');
+    page.classList.toggle('h-full');
+  }, [collapse]);
 
   const menuSwitcher = () => {
     const menus = ['default', 'vertical'];
@@ -47,7 +56,10 @@ function App() {
 
   return (
     <>
-      <div className={`h-full ${layout === 'default' && 'container mx-auto'}`}>
+      <div
+        id="page"
+        className={`sm:h-full ${layout === 'default' && 'container mx-auto'}`}
+      >
         <div id="line" className="one"></div>
         <div id="line" className="two"></div>
         <div id="line" className="three"></div>
@@ -59,7 +71,7 @@ function App() {
           }`}
         >
           <aside
-            className={`h-full ${
+            className={`${
               layout === 'default'
                 ? 'sm:w-1/3 md:w-1/4 px-2'
                 : layout === 'full'
@@ -69,30 +81,32 @@ function App() {
                 : 'md:w-1/5 px-5'
             }`}
           >
-            <div className="h-full bg-white shadow-md shadow-black">
-              <Sidebar menu={menu} />
-            </div>
+            <Sidebar
+              menu={menu}
+              toggleCollapse={() => setCollapse(!collapse)}
+              collapse={collapse}
+            />
           </aside>
 
           <main
             role="main"
             className={`w-full sm:w-2/3 md:w-3/4 pt-1 ${
-              layout !== 'default' && 'pl-10'
+              layout !== 'default' && 'sm:pl-10 p-2'
             }`}
           >
             <div
-              className={`w-full h-2 bg-white shadow-lg shadow-black ${
+              className={`hidden sm:block w-full h-2 bg-white shadow-lg shadow-black ${
                 layout === 'default' && 'ml-10'
               }`}
             ></div>
-            <div className={`pt-10 ${layout === 'default' && 'ml-10'}`}>
+            <div className={`pt-3 sm:pt-10 ${layout === 'default' && 'ml-10'}`}>
               <RouteProvider layout={layout} />
             </div>
           </main>
         </div>
       </div>
       <div
-        className="absolute bottom-0 h-1 w-full bg-orange-400"
+        className="sticky sm:absolute bottom-0 h-1 w-full bg-orange-400"
         style={{
           boxShadow: '0px -2px 10px 0px rgba(0,0,0,0.5)',
         }}

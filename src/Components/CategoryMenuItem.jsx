@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 
-export const CategoryMenuItem = ({ path, title }) => {
+export const CategoryMenuItem = ({ path, title, toggleCollapse }) => {
   const { pathname } = useLocation();
 
   return (
@@ -12,6 +12,7 @@ export const CategoryMenuItem = ({ path, title }) => {
       <Link
         to={path}
         className="w-full h-full block pl-5 p-1.5 ease-in-out duration-300 hover:pl-6"
+        onClick={toggleCollapse}
       >
         {title}
       </Link>
