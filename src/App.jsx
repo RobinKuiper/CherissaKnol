@@ -25,11 +25,11 @@ function App() {
 
   const [layout, setLayout] = useState('full');
   const [collapse, setCollapse] = useState(false);
-  const firstRun = useRef(true);
+  const firstRun = useRef(
+    process.env.NODE_ENV === 'development' ? false : true
+  );
 
   useEffect(() => {
-    console.log(process.env.NODE_ENV);
-
     if (firstRun.current) {
       firstRun.current = false;
       return;
@@ -91,7 +91,7 @@ function App() {
         <div id="line" className="three"></div>
         {layoutSwitcher()}
         <div
-          className={`flex flex-row flex-wrap h-full ${
+          className={`sm:flex sm:flex-row flex-wrap h-full ${
             layout === 'default' && 'py-4'
           }`}
         >
@@ -100,7 +100,7 @@ function App() {
               layout === 'default'
                 ? 'sm:w-1/3 md:w-1/4 px-2'
                 : layout === 'full'
-                ? 'md:w-1/5'
+                ? 'sm:w-3/12 md:w-1/5'
                 : layout === 'full2'
                 ? 'md:w-1/5 px-2'
                 : 'md:w-1/5 px-5'
@@ -118,7 +118,7 @@ function App() {
 
           <main
             role="main"
-            className={`w-full sm:w-2/3 md:w-3/4 pt-1 ${
+            className={`w-full sm:w-9/12 md:w-4/5 pt-1 ${
               layout !== 'default' && 'sm:pl-10 p-2'
             }`}
           >

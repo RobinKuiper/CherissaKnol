@@ -29,7 +29,7 @@ export const Sidebar = ({ toggleCollapse, collapse }) => {
 
         <div
           id="nav"
-          className="mt-5 space-x-10 flex-row justify-center content-around hidden sm:flex"
+          className="mt-5 px-2 md:mx-5 flex-row flex-wrap justify-between content-around hidden sm:flex"
         >
           <NavMenuItem path="/" title="Home" toggleCollapse={toggleCollapse} />
           {/* <span className="text-teal-800">/</span> */}

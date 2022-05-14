@@ -5,7 +5,7 @@ export const NavMenuItem = ({ path, title, toggleCollapse }) => {
 
   return (
     <span
-      className={`border-b-2 border-transparent ease-in-out duration-300 ${
+      className={`mx-1 border-b-2 border-transparent ease-in-out duration-300 ${
         pathname === path && 'border-orange-300'
       } hover:border-orange-300`}
     >
