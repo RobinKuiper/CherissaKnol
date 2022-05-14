@@ -4,9 +4,8 @@ import { RouteProvider } from './Components';
 
 function App() {
   const [layout, setLayout] = useState('full');
-  const [menu, setMenu] = useState('default');
   const [collapse, setCollapse] = useState(false);
-  const firstRun = useRef(true);
+  const firstRun = useRef(false);
 
   useEffect(() => {
     if (firstRun.current) {
@@ -39,25 +38,6 @@ function App() {
     sidebar.classList.toggle('nav-sticky');
   }, [collapse]);
 
-  const menuSwitcher = () => {
-    const menus = ['default', 'vertical'];
-    const currentMenuIndex = menus.indexOf(menu);
-
-    const toggleMenu = () => {
-      const nextMenuIndex = currentMenuIndex === 0 ? 1 : 0;
-      setMenu(menus[nextMenuIndex]);
-    };
-
-    return (
-      <button
-        className="absolute bottom-0 right-[10%] bg-white text-black p-3"
-        onClick={toggleMenu}
-      >
-        Switch Menu {currentMenuIndex + 1}/{menus.length}
-      </button>
-    );
-  };
-
   const layoutSwitcher = () => {
     const layouts = ['default', 'full', 'full2', 'full3'];
     const currentLayoutIndex = layouts.indexOf(layout);
@@ -87,7 +67,6 @@ function App() {
         <div id="line" className="one"></div>
         <div id="line" className="two"></div>
         <div id="line" className="three"></div>
-        {menuSwitcher()}
         {layoutSwitcher()}
         <div
           className={`flex flex-row flex-wrap h-full ${
@@ -106,7 +85,6 @@ function App() {
             }`}
           >
             <Sidebar
-              menu={menu}
               toggleCollapse={() => setCollapse(!collapse)}
               collapse={collapse}
             />
