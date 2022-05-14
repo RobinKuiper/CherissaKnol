@@ -25,8 +25,6 @@ export const Photo = () => {
     );
   }, [title]);
 
-  if (!photo) return <Loading />;
-
   return (
     <div>
       <LightgalleryProvider
@@ -37,71 +35,85 @@ export const Photo = () => {
       >
         <div className="flex flex-row space-x-10">
           <div className="h-full w-6/12">
-            <LightgalleryItem
-              src={`https://picsum.photos/1080/768?random=${title}`}
-              alt={photo.title}
-            >
-              <img
+            {photo ? (
+              <LightgalleryItem
                 src={`https://picsum.photos/1080/768?random=${title}`}
                 alt={photo.title}
-                title={photo.title}
-                className="border-4 border-[#F49E4B] cursor-pointer"
-              />
-            </LightgalleryItem>
+              >
+                <img
+                  src={`https://picsum.photos/1080/768?random=${title}`}
+                  alt={photo.title}
+                  title={photo.title}
+                  className="border-4 border-[#F49E4B] cursor-pointer"
+                />
+              </LightgalleryItem>
+            ) : (
+              <Loading />
+            )}
           </div>
 
           <div className="relative">
-            <h1 className="text-5xl text-shadow">{photo.title}</h1>
-            <p>{photo.category}</p>
-            <div className="mt-10 text-xl flex flex-row space-x-10 items-center">
-              <p className="">Size</p>
-              <select
-                className="p-2 text-black shadow-lg w-full"
-                onChange={(e) => setSize(e.target.value)}
-              >
-                <option value={1}>Small</option>
-                <option value={2}>Medium</option>
-                <option value={3}>Large</option>
-              </select>
-            </div>
-            <div className="mt-10 text-right">
-              <p className="text-2xl">$ {price}</p>
-            </div>
+            {photo ? (
+              <>
+                <h1 className="text-5xl text-shadow">{photo.title}</h1>
+                <p>{photo.category}</p>
+                <div className="mt-10 text-xl flex flex-row space-x-10 items-center">
+                  <p className="">Size</p>
+                  <select
+                    className="p-2 text-black shadow-lg w-full"
+                    onChange={(e) => setSize(e.target.value)}
+                  >
+                    <option value={1}>Small</option>
+                    <option value={2}>Medium</option>
+                    <option value={3}>Large</option>
+                  </select>
+                </div>
+                <div className="mt-10 text-right">
+                  <p className="text-2xl">$ {price}</p>
+                </div>
 
-            <div className="absolute bottom-0 flex flex-row justify-end w-full">
-              <form
-                action="https://www.paypal.com/cgi-bin/webscr"
-                method="post"
-                target="_top"
-              >
-                <input type="hidden" name="cmd" value="_s-xclick" />
-                <input
-                  type="hidden"
-                  name="hosted_button_id"
-                  value="JBCRBRUHHLLPS"
-                />
-                <table>
-                  <tr>
-                    <td>
-                      <input type="hidden" name="on0" value="Size" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input
-                        type="hidden"
-                        name="os0"
-                        value={
-                          size === 1 ? 'Small' : size === 2 ? 'Medium' : 'Big'
-                        }
-                      />
-                    </td>
-                  </tr>
-                </table>
-                <input type="hidden" name="currency_code" value="EUR" />
-                <button className="button-76">Order</button>
-              </form>
-            </div>
+                <div className="absolute bottom-0 flex flex-row justify-end w-full">
+                  <form
+                    action="https://www.paypal.com/cgi-bin/webscr"
+                    method="post"
+                    target="_top"
+                  >
+                    <input type="hidden" name="cmd" value="_s-xclick" />
+                    <input
+                      type="hidden"
+                      name="hosted_button_id"
+                      value="JBCRBRUHHLLPS"
+                    />
+                    <table>
+                      <tr>
+                        <td>
+                          <input type="hidden" name="on0" value="Size" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <input
+                            type="hidden"
+                            name="os0"
+                            value={
+                              size === 1
+                                ? 'Small'
+                                : size === 2
+                                ? 'Medium'
+                                : 'Big'
+                            }
+                          />
+                        </td>
+                      </tr>
+                    </table>
+                    <input type="hidden" name="currency_code" value="EUR" />
+                    <button className="button-76">Order</button>
+                  </form>
+                </div>
+              </>
+            ) : (
+              <Loading />
+            )}
           </div>
         </div>
 
