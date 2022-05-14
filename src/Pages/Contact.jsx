@@ -3,7 +3,7 @@ import { FaEnvelope, FaFacebook, FaInstagram, FaPhone } from 'react-icons/fa';
 export const Contact = () => {
   return (
     <div>
-      <div className="sm:flex flex-row mt-10">
+      <div className="sm:flex flex-row mt-10 pr-40">
         <div className="sm:w-2/4">
           <div className="flex flex-col items-center space-y-8">
             <h1 className="text-4xl font-bold">My Socials</h1>
