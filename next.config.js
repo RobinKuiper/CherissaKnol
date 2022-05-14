@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  exportTrailingSlash: true,
-  trailingSlash: true,
+  trailingSlash: false,
   images: {
     domains: ['i.imgur.com'],
   }
