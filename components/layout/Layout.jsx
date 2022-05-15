@@ -22,7 +22,7 @@ export const Layout = ({ children }) => {
   };
 
   useEffect(() => {
-    if (firstRun.current) {
+    if (firstRun.current || !isBreakpoint) {
       firstRun.current = false;
       return;
     }

@@ -1,6 +1,7 @@
 import { useSession, signIn } from 'next-auth/react';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Layout } from '../../components';
 import { photoRepo } from '../../helpers';
 
@@ -34,7 +35,7 @@ export default function Photos() {
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-3xl font-bold text-center">Photos</h1>
           <p className="text-center">
-            <a href="/admin/photos/add">Add a photo</a>
+            <Link href="/admin/photos/add">Add a photo</Link>
           </p>
           <table className="w-full">
             <tr className="text-left">
@@ -60,7 +61,7 @@ export default function Photos() {
                 <td className="font-bold">{photo.title}</td>
                 <td>{photo.category}</td>
                 <td>
-                  <a href={`/admin/photos/${photo.id}`}>Edit</a> |{' '}
+                  <Link href={`/admin/photos/${photo.id}`}>Edit</Link> |{' '}
                   <button onClick={() => deletePhoto(photo.id)}>Delete</button>
                 </td>
               </tr>

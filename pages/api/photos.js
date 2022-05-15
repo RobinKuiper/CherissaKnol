@@ -1,4 +1,5 @@
 import { getSession } from "next-auth/react";
+import { photoRepo } from "../../helpers";
 import adminPhotoRepo from "../../helpers/adminPhotoRepo";
 
 export default async function handler(req, res) {
@@ -23,7 +24,10 @@ export default async function handler(req, res) {
 
 async function addPhoto(req, res) {
   const photo = req.body;
-  const newPhoto = await adminPhotoRepo.add(photo);
+
+  photo.id = (photoRepo.getPhotos().length + 1).toString();
+
+  await adminPhotoRepo.add(photo);
 
   res.status(200).send({ success: true });
 }

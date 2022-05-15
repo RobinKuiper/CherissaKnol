@@ -1,8 +1,35 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { Layout } from '../../../components';
+import { PhotoForm } from '../../../components/admin/PhotoForm';
 import { photoRepo } from '../../../helpers';
 
 const Photo = ({ photo }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { title, category, url, description, price, cols, rows } = e.target;
+
+    try {
+      fetch('/api/photos', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: title.value,
+          category: category.value,
+          url: url.value,
+          description: description.value,
+          price: price.value,
+          cols: cols.value,
+          rows: rows.value,
+        }),
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Layout>
       <Head>
@@ -12,71 +39,9 @@ const Photo = ({ photo }) => {
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-3xl font-bold text-center">Edit Photo</h1>
         <p className="text-center">
-          <a href="/admin/photos">Back to Photos</a>
+          <Link href="/admin/photos">Back to Photos</Link>
         </p>
-        <form
-          className="w-full max-w-lg"
-          onSubmit={(e) => {
-            e.preventDefault();
-            const { id, title, category } = e.target;
-
-            try {
-              fetch('/api/photos', {
-                method: 'PUT',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  id: id.value,
-                  title: title.value,
-                  category: category.value,
-                }),
-              });
-            } catch (error) {
-              console.error(error);
-            }
-          }}
-        >
-          <input type="hidden" name="id" value={photo.id} />
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="title"
-            >
-              Title
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="title"
-              type="text"
-              name="title"
-              defaultValue={photo.title}
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="category"
-            >
-              Category
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="category"
-              type="text"
-              name="category"
-              defaultValue={photo.category}
-            />
-          </div>
-          <div className="flex items-center justify-between">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              Save
-            </button>
-          </div>
-        </form>
+        <PhotoForm onSubmit={handleSubmit} photo={photo} />
       </div>
     </Layout>
   );
