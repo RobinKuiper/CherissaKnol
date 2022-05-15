@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { FaEnvelope, FaFacebook, FaInstagram, FaPhone } from 'react-icons/fa';
-import { Layout } from '../components';
+import { Layout, Title } from '../components';
 
 const Contact = () => {
   return (
@@ -14,7 +14,7 @@ const Contact = () => {
       <div className="sm:flex flex-row mt-10 sm:pr-40">
         <div className="sm:w-2/4">
           <div className="flex flex-col items-center space-y-8">
-            <h1 className="text-4xl font-bold">My Socials</h1>
+            <Title>My Socials</Title>
             <p className="text-xl flex flex-row space-x-4 items-center">
               <FaEnvelope />
               <span>test@example.com</span>
@@ -36,7 +36,7 @@ const Contact = () => {
           </div>
         </div>
         <div className="sm:w-2/4 mt-10 sm:mt-auto">
-          <h1 className="text-4xl font-bold mb-5">Get In Touch</h1>
+          <Title>Get In Touch</Title>
           <form className="flex flex-col space-y-8">
             <label className="text-sm">Name</label>
             <input type="text" className="w-full" />

@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Layout } from '../components';
+import { Layout, Title } from '../components';
 
 const collabs = () => {
   return (
@@ -10,7 +10,7 @@ const collabs = () => {
         <link rel="icon" href="/favicon.ico" /> */}
       </Head>
 
-      <div>collabs</div>
+      <Title>Collabs</Title>
     </Layout>
   );
 };

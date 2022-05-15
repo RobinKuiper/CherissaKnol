@@ -12,7 +12,7 @@ const about = () => {
       </Head>
 
       <div className="h-full flex flex-row">
-        <div className="h-full w-1/2">
+        <div className="hidden h-full w-1/2 sm:block">
           <div
             className="h-full mx-20 relative rounded"
             style={{
@@ -32,8 +32,23 @@ const about = () => {
           </div>
         </div>
 
-        <div className="w-1/2 space-y-10">
+        <div className="w-2/2 sm:w-1/2 space-y-10">
           <Title>About Me</Title>
+
+          <div className="block sm:hidden relative w-full h-[200px] shadow-lg">
+            <Image
+              src="https://picsum.photos/id/1027/1080/768"
+              alt="Cherissa Knol"
+              title="Cherissa Knol"
+              layout="fill"
+              style={{
+                borderRadius: '5px',
+              }}
+              // width="270px"
+              // height="192px"
+            />
+          </div>
+
           <p>
             Excepteur aliquip pariatur qui voluptate deserunt reprehenderit
             Lorem laboris excepteur minim minim amet commodo consectetur.
