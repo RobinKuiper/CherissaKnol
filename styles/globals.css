@@ -79,12 +79,35 @@ a {
 .grid-wrapper .wide {
   grid-column: span 2;
 }
+.grid-wrapper .wide3 {
+  grid-column: span 3;
+}
+.grid-wrapper .wide4 {
+  grid-column: span 4;
+}
+.grid-wrapper .wide5 {
+  grid-column: span 5;
+}
 .grid-wrapper .tall {
   grid-row: span 2;
+}
+.grid-wrapper .tall3 {
+  grid-row: span 3;
+}
+.grid-wrapper .tall4 {
+  grid-row: span 4;
 }
 .grid-wrapper .big {
   grid-column: span 2;
   grid-row: span 2;
+}
+.grid-wrapper .big3 {
+  grid-column: span 3;
+  grid-row: span 3;
+}
+.grid-wrapper .big4 {
+  grid-column: span 4;
+  grid-row: span 4;
 }
 
 /** Pay Button */

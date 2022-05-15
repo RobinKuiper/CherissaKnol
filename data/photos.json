@@ -9,7 +9,9 @@
       "nature",
       "sunset"
     ],
-    "size": "wide"
+    "size": "big3",
+    "rows": 1,
+    "cols": 2
   },
   {
     "title": "The Godfather",

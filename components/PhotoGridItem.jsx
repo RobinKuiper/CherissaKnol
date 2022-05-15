@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { urlHelpers } from '../helpers';
 import { CustomLink } from './CustomLink';
 
-export const PhotoGridItem = ({ size, id, title, category }) => {
+export const PhotoGridItem = ({ size, id, title, category, rows, cols }) => {
   const [transform, setTransform] = useState('0deg scale(1)');
 
   // let url =
@@ -27,6 +27,9 @@ export const PhotoGridItem = ({ size, id, title, category }) => {
     setTransform('rotate(0deg) scale(1)');
   };
 
+  const gridColumn = cols ? `span ${cols}` : '';
+  const gridRow = rows ? `span ${rows}` : '';
+
   return (
     <span
       className={
@@ -35,6 +38,8 @@ export const PhotoGridItem = ({ size, id, title, category }) => {
       }
       style={{
         transform,
+        gridColumn,
+        gridRow,
       }}
     >
       <CustomLink
