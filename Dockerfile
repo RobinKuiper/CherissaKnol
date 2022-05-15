@@ -1,24 +1,27 @@
-FROM node:lts as dependencies
-WORKDIR /my-project
+# Copy package.json and install dependencies
+FROM node:alpine as dependencies
+WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
-FROM node:lts as builder
-WORKDIR /my-project
+# Copy app and dependencies and build
+FROM node:alpine as builder
+WORKDIR /app
 COPY . .
-COPY --from=dependencies /my-project/node_modules ./node_modules
 RUN yarn add sharp
+COPY --from=dependencies /app/node_modules ./node_modules
 RUN yarn build
 
-FROM node:lts as runner
-WORKDIR /my-project
+# Copy production folders and expose port
+FROM node:alpine as runner
+WORKDIR /app
 ENV NODE_ENV production
-# If you are using a custom next.config.js file, uncomment this line.
-COPY --from=builder /my-project/next.config.js ./
-COPY --from=builder /my-project/public ./public
-COPY --from=builder /my-project/.next ./.next
-COPY --from=builder /my-project/node_modules ./node_modules
-COPY --from=builder /my-project/package.json ./package.json
+
+COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
 
 EXPOSE 8082
 CMD ["yarn", "start"]
