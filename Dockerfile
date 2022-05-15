@@ -1,21 +1,22 @@
-from node:12
+from node:alpine
 
-ENV PORT 3000
-
-# Create app directory
-RUN mkdir -p /app
-WORKDIR /app
+# Set working directory
+WORKDIR /usr/app
 
 # Installing dependencies
-COPY package*.json /app
-RUN npm install
+COPY package*.json yarn.lock ./
+RUN yarn
 
 # Copy files to app directory
-COPY . /app
+COPY . .
 
 # Build app
-#RUN npm run build
-EXPOSE 3000
+RUN yarn build
+
+EXPOSE 8082
+
+# Run as user node
+USER node
 
 # Start app
-CMD ["npm", "start", "dev"]
+CMD ["npm", "start"]
