@@ -1,4 +1,3 @@
-import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaFacebook, FaInstagram } from 'react-icons/fa';
 import { CategoryMenuItem } from '../CategoryMenuItem';
@@ -6,55 +5,36 @@ import { NavMenuItem } from '../NavMenuItem';
 import { useMediaQuery } from '../../helpers/contexts';
 import { CustomLink } from '../CustomLink';
 import Image from 'next/image';
-import Link from 'next/link';
 import { constants } from '../../helpers';
 
 export const Layout = ({ children }) => {
   const isBreakpoint = useMediaQuery(750);
 
-  const [collapse, setCollapse] = useState(false);
-  const firstRun = useRef(
-    process.env.NODE_ENV === 'development' ? false : true
-  );
-
   const toggleCollapse = () => {
-    if (isBreakpoint) setCollapse(!collapse);
+    if (isBreakpoint) {
+      const hidden = document.getElementById('hidden');
+      hidden.classList.toggle('hidden');
+
+      const aside = document.getElementById('aside');
+      aside.classList.toggle('min-h-screen');
+
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('min-h-screen');
+    }
   };
 
-  useEffect(() => {
-    if (firstRun.current || !isBreakpoint) {
-      firstRun.current = false;
-      return;
-    }
-    const aside = document.getElementsByTagName('aside')[0];
-    const page = document.getElementsByTagName('main')[0];
-
-    aside.classList.toggle('h-full');
-    page.classList.toggle('h-full');
-
-    const nav = document.getElementById('nav');
-    const categories = document.getElementById('categories');
-    const socials = document.getElementById('socials');
-
-    nav.classList.toggle('hidden');
-    nav.classList.toggle('flex');
-
-    categories.classList.toggle('hidden');
-    socials.classList.toggle('hidden');
-
-    const hamburger = document.getElementById('hamburger');
-    hamburger.classList.toggle('open');
-
-    const sidebar = document.getElementById('sidebar');
-    sidebar.classList.toggle('nav-sticky');
-  }, [collapse]);
-
   return (
-    <main className="sm:h-full">
-      <div className="h-full flex flex-col sm:flex-row sm:flex-wrap">
-        <aside className="sticky top-0 sm:w-3/12 md:w-1/5 z-40">
-          <div id="sidebar" className="h-full bg-white shadow-md shadow-black">
-            <div className="text-black h-full sm:relative">
+    <main className="">
+      <div className="flex flex-col sm:flex-row">
+        <aside
+          id="aside"
+          className="sm:flex sticky top-0 sm:w-3/12 md:w-1/5 sm:min-h-screen z-40"
+        >
+          <div
+            id="sidebar"
+            className="bg-white shadow-md shadow-black sm:relative"
+          >
+            <div className="text-black">
               {/* Header */}
               <div className="flex flex-row justify-between">
                 <div className="m-3 w-[25%] sm:w-full relative">
@@ -80,74 +60,71 @@ export const Layout = ({ children }) => {
                 </button>
               </div>
 
-              {/* Navigation */}
-              <div
-                id="nav"
-                className="hidden mt-5 px-2 sm:flex sm:flex-row sm:flex-wrap justify-between content-around md:mx-5"
-              >
-                <NavMenuItem
-                  path="/"
-                  title="Home"
-                  toggleCollapse={toggleCollapse}
-                />
-                <NavMenuItem
-                  path="/about"
-                  title="About"
-                  toggleCollapse={toggleCollapse}
-                />
-                <NavMenuItem
-                  path="/collabs"
-                  title="Collabs"
-                  toggleCollapse={toggleCollapse}
-                />
-                <NavMenuItem
-                  path="/contact"
-                  title="Contact"
-                  toggleCollapse={toggleCollapse}
-                />
-              </div>
-
-              {/* Categories */}
-              <div id="categories" className="hidden mt-16 sm:block">
-                <ul className="text-3xl space-y-2">
-                  <li className="pl-2.5 text-sm font-bold">Categories</li>
-                  <CategoryMenuItem
-                    path="/photos/landscapes"
-                    title="Landscapes"
+              <div id="hidden" className="hidden sm:block">
+                {/* Navigation */}
+                <div
+                  id="nav"
+                  className="mt-5 px-2 flex flex-row flex-wrap justify-between content-around md:mx-5"
+                >
+                  <NavMenuItem
+                    path="/"
+                    title="Home"
                     toggleCollapse={toggleCollapse}
                   />
-                  <CategoryMenuItem
-                    path="/photos/still-life"
-                    title="Still-Life"
+                  <NavMenuItem
+                    path="/about"
+                    title="About"
                     toggleCollapse={toggleCollapse}
                   />
-                  <CategoryMenuItem
-                    path="/photos/nature"
-                    title="Nature"
+                  <NavMenuItem
+                    path="/collabs"
+                    title="Collabs"
                     toggleCollapse={toggleCollapse}
                   />
-                </ul>
-              </div>
-
-              {/* Socials */}
-              <div
-                id="socials"
-                className="hidden absolute bottom-10 w-full sm:block"
-              >
-                <div className="flex flex-row justify-center content-around space-x-5 mt-5 text-2xl text-teal-800">
-                  <a href={constants.FB_URL} target="_blank" rel="noreferrer">
-                    <FaFacebook className="cursor-pointer ease-in-out duration-300 hover:text-orange-400" />
-                  </a>
-                  <a href={constants.IG_URL} target="_blank" rel="noreferrer">
-                    <FaInstagram className="cursor-pointer ease-in-out duration-300 hover:text-orange-400" />
-                  </a>
-                  <a
-                    href={`mailto:${constants.EMAIL}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <FaEnvelope className="cursor-pointer ease-in-out duration-300 hover:text-orange-400" />
-                  </a>
+                  <NavMenuItem
+                    path="/contact"
+                    title="Contact"
+                    toggleCollapse={toggleCollapse}
+                  />
+                </div>
+                {/* Categories */}
+                <div id="categories" className="mt-16">
+                  <ul className="text-3xl space-y-2">
+                    <li className="pl-2.5 text-sm font-bold">Categories</li>
+                    <CategoryMenuItem
+                      path="/photos/landscapes"
+                      title="Landscapes"
+                      toggleCollapse={toggleCollapse}
+                    />
+                    <CategoryMenuItem
+                      path="/photos/still-life"
+                      title="Still-Life"
+                      toggleCollapse={toggleCollapse}
+                    />
+                    <CategoryMenuItem
+                      path="/photos/nature"
+                      title="Nature"
+                      toggleCollapse={toggleCollapse}
+                    />
+                  </ul>
+                </div>
+                {/* Socials */}
+                <div id="socials" className="absolute bottom-10 w-full">
+                  <div className="flex flex-row justify-center content-around space-x-5 mt-5 text-2xl text-teal-800">
+                    <a href={constants.FB_URL} target="_blank" rel="noreferrer">
+                      <FaFacebook className="cursor-pointer ease-in-out duration-300 hover:text-orange-400" />
+                    </a>
+                    <a href={constants.IG_URL} target="_blank" rel="noreferrer">
+                      <FaInstagram className="cursor-pointer ease-in-out duration-300 hover:text-orange-400" />
+                    </a>
+                    <a
+                      href={`mailto:${constants.EMAIL}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <FaEnvelope className="cursor-pointer ease-in-out duration-300 hover:text-orange-400" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
