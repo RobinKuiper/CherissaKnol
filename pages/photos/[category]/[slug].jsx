@@ -19,7 +19,7 @@ const Photo = ({ photo }) => {
   return (
     <Layout>
       <Head>
-        <title>Photo - Cherissa Knol</title>
+        <title>{title} - Cherissa Knol</title>
       </Head>
 
       <LightgalleryProvider

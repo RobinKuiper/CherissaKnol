@@ -3,11 +3,11 @@ import { Suspense } from 'react';
 import { Layout, Loading, PhotoGridItem } from '../../components';
 import { photoRepo } from '../../helpers';
 
-const Photos = ({ photos }) => {
+const Photos = ({ photos, category }) => {
   return (
     <Layout>
       <Head>
-        <title>Photos - Cherissa Knol</title>
+        <title>{category} - Cherissa Knol</title>
       </Head>
 
       <Suspense fallback={<Loading />}>
@@ -42,6 +42,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       photos,
+      category: params.category,
     },
   };
 }
