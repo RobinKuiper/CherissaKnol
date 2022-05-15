@@ -1,41 +1,8 @@
 [
   {
-    "title": "The Shawshank Redemption",
-    "id": "1",
-    "description": "Nulla ullamco mollit dolor qui adipisicing eiusmod exercitation ullamco.",
-    "category": "landscapes",
-    "tags": [
-      "landscapes",
-      "nature",
-      "sunset"
-    ],
-    "size": "big3",
-    "rows": 1,
-    "cols": 2
-  },
-  {
-    "title": "The Godfather",
     "id": "2",
-    "description": "Nulla ullamco mollit dolor qui adipisicing eiusmod exercitation ullamco.",
-    "category": "landscapes",
-    "tags": [
-      "landscapes",
-      "nature",
-      "sunset"
-    ],
-    "size": "tall"
-  },
-  {
-    "title": "The Godfather Part II",
-    "id": "3",
-    "description": "Nulla ullamco mollit dolor qui adipisicing eiusmod exercitation ullamco.",
-    "category": "landscapes",
-    "tags": [
-      "landscapes",
-      "nature",
-      "sunset"
-    ],
-    "size": "big"
+    "title": "Bladieblaat",
+    "category": "landscapes"
   },
   {
     "title": "The Dark Knight",
@@ -288,5 +255,10 @@
       "other"
     ],
     "size": ""
+  },
+  {
+    "id": "",
+    "title": "boepiejoepie",
+    "category": "test"
   }
 ]
