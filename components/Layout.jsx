@@ -25,12 +25,9 @@ export const Layout = ({ children }) => {
     }
     const aside = document.getElementsByTagName('aside')[0];
     const page = document.getElementsByTagName('main')[0];
-    const footerLine = document.getElementById('footer-line');
 
     aside.classList.toggle('h-full');
     page.classList.toggle('h-full');
-    // footerLine.classList.toggle('fixed');
-    // footerLine.classList.toggle('sticky');
 
     const nav = document.getElementById('nav');
     const categories = document.getElementById('categories');
@@ -51,7 +48,7 @@ export const Layout = ({ children }) => {
 
   return (
     <main className="sm:h-full">
-      <div className="h-full sm:flex sm:flex-row sm:flex-wrap">
+      <div className="h-full flex flex-col sm:flex-row sm:flex-wrap">
         <aside className="sticky top-0 sm:w-3/12 md:w-1/5 z-40">
           <div id="sidebar" className="h-full bg-white shadow-md shadow-black">
             <div className="text-black h-full sm:relative">
@@ -183,7 +180,7 @@ export const Layout = ({ children }) => {
       {/* Orange Footer Line */}
       <div
         id="footer-line"
-        className="sticky bottom-0 h-1 bg-orange-400 absolute z-50"
+        className="fixed bottom-0 w-full h-1 bg-orange-400 z-50"
         style={{ boxShadow: '0px -2px 10px 0px rgba(0,0,0,0.5)' }}
       />
     </main>

@@ -175,6 +175,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fontsource/bebas-neue@^4.5.7":
+  version "4.5.7"
+  resolved "https://registry.yarnpkg.com/@fontsource/bebas-neue/-/bebas-neue-4.5.7.tgz#8fe7b6a44443d1593ade495fd96782839a990bc6"
+  integrity sha512-wVPVtSxQD3BVYs9F2ENBq9Qx2PZW0X9GOMhtbny+kKQAAaKWrFv29r8swJ6uNuXM+f+CcNmjb3P/aWC7tPaR+w==
+
 "@fontsource/roboto@^4.5.5":
   version "4.5.5"
   resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.5.5.tgz#4ecc38e690469378e2ec2a97f9c12282c654cc93"

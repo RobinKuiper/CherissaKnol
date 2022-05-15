@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import '@fontsource/roboto';
+import "@fontsource/bebas-neue"
 import { AnimatePresence, AnimateSharedLayout } from 'framer-motion';
 import { useRouter } from 'next/router';
 

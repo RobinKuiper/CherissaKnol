@@ -10,6 +10,7 @@
     "export": "yarn build && next export -o build"
   },
   "dependencies": {
+    "@fontsource/bebas-neue": "^4.5.7",
     "@fontsource/roboto": "^4.5.5",
     "autoprefixer": "^10.4.7",
     "framer-motion": "^6.3.3",
