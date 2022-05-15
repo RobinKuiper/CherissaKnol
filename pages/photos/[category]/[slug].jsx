@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import React from 'react';
-import { Layout } from '../../../components/Layout';
+import { Layout } from '../../../components';
 import { photoRepo, urlHelpers } from '../../../helpers';
 import 'lightgallery.js/dist/css/lightgallery.css';
 import { LightgalleryItem, LightgalleryProvider } from 'react-lightgallery';
