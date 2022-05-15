@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { FaEnvelope, FaFacebook, FaInstagram, FaPhone } from 'react-icons/fa';
 import { Layout, Title } from '../components';
 import { ContactForm } from '../components/contact/ContactForm';
+import { constants } from '../helpers';
 
 const Contact = () => {
   return (
@@ -17,7 +18,7 @@ const Contact = () => {
           <div className="flex flex-col items-center space-y-8">
             <Title>My Socials</Title>
             <a
-              href="mailto:pietje@jan.nl"
+              href={`mailto:${constants.EMAIL}`}
               className="text-xl flex flex-row space-x-4 items-center"
             >
               <FaEnvelope className="text-orange-400" />
@@ -31,8 +32,12 @@ const Contact = () => {
               <span>123-456-7891</span>
             </a>
             <p className="flex space-x-8 justify-center text-4xl">
-              <FaFacebook className="cursor-pointer hover:text-orange-400 hover:scale-110" />
-              <FaInstagram className="cursor-pointer hover:text-orange-400 hover:scale-110" />
+              <a href={constants.FB_URL} target="_blank" rel="noreferrer">
+                <FaFacebook className="cursor-pointer hover:text-orange-400 hover:scale-110" />
+              </a>
+              <a href={constants.IG_URL} target="_blank" rel="noreferrer">
+                <FaInstagram className="cursor-pointer hover:text-orange-400 hover:scale-110" />
+              </a>
             </p>
           </div>
 
