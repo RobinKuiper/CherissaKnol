@@ -7,6 +7,7 @@ FROM node:lts as builder
 WORKDIR /my-project
 COPY . .
 COPY --from=dependencies /my-project/node_modules ./node_modules
+RUN yarn add sharp
 RUN yarn build
 
 FROM node:lts as runner
