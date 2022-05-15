@@ -6,6 +6,7 @@ import { photoRepo, urlHelpers } from '../../../helpers';
 import 'lightgallery.js/dist/css/lightgallery.css';
 import { LightgalleryItem, LightgalleryProvider } from 'react-lightgallery';
 import { Loading } from '../../../components';
+import Image from 'next/image';
 
 const Photo = ({ photo }) => {
   const { title } = photo;
@@ -35,12 +36,16 @@ const Photo = ({ photo }) => {
                 src={`https://picsum.photos/1080/768?random=${title}`}
                 alt={photo.title}
               >
-                <img
-                  src={`https://picsum.photos/1080/768?random=${title}`}
-                  alt={photo.title}
-                  title={photo.title}
-                  className="border-4 border-[#F49E4B] cursor-pointer"
-                />
+                <div className="border-4 border-orange-400 cursor-pointer">
+                  <Image
+                    src={`https://picsum.photos/1080/768?random=${title}`}
+                    alt={photo.title}
+                    title={photo.title}
+                    layout="responsive"
+                    width="1080px"
+                    height="768px"
+                  />
+                </div>
               </LightgalleryItem>
             ) : (
               <Loading />

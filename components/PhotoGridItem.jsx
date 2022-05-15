@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useState } from 'react';
 import { urlHelpers } from '../helpers';
 import { CustomLink } from './CustomLink';
@@ -31,7 +32,7 @@ export const PhotoGridItem = ({ size, id, title, category }) => {
     <span
       className={
         size +
-        ` shadow-sm shadow-black cursor-pointer rounded ease-in-out duration-300 hover:shadow-2xl hover:shadow-gray-900 z-20 hover:z-50`
+        ` relative object-cover shadow-sm shadow-black cursor-pointer rounded ease-in-out duration-300 hover:shadow-2xl hover:shadow-gray-900 z-20 hover:z-50`
       }
       style={{
         transform,
@@ -40,14 +41,17 @@ export const PhotoGridItem = ({ size, id, title, category }) => {
       <CustomLink
         href={`/photos/${category}/${urlHelpers.toSeoFriendly(title)}`}
       >
-        <img
+        <Image
           src={url}
           alt={title}
           title={title}
-          className="w-full h-full rounded object-cover"
           onMouseEnter={changeTransform}
           onMouseLeave={resetTransform}
           onMouseOut={() => resetTransform}
+          layout="fill"
+          style={{
+            borderRadius: '5px',
+          }}
         />
       </CustomLink>
     </span>

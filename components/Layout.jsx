@@ -5,6 +5,7 @@ import { CategoryMenuItem } from './CategoryMenuItem';
 import { NavMenuItem } from './NavMenuItem';
 import { useMediaQuery } from '../helpers/contexts';
 import { CustomLink } from './CustomLink';
+import Image from 'next/image';
 
 export const Layout = ({ children }) => {
   const isBreakpoint = useMediaQuery(750);
@@ -54,14 +55,15 @@ export const Layout = ({ children }) => {
             <div className="text-black h-full sm:relative">
               {/* Header */}
               <div className="flex flex-row justify-between">
-                <div className="m-3 w-[25%] sm:w-full">
+                <div className="m-3 w-[25%] sm:w-full relative">
                   <CustomLink href="/">
-                    <img
+                    <Image
                       src="https://i.imgur.com/F4p34dJ.png"
                       alt="logo"
                       className="cursor-pointer"
-                      // width="200px"
-                      // height="100px"
+                      layout="intrinsic"
+                      width="452px"
+                      height="218px"
                     />
                   </CustomLink>
                 </div>
