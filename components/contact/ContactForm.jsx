@@ -47,12 +47,21 @@ export const ContactForm = () => {
     <Formik
       validationSchema={validationSchema}
       initialValues={{ name, email, message }}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
+      onSubmit={async (values, { setSubmitting }) => {
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          });
           setSuccess(true);
-        }, 400);
+          setSubmitting(false);
+        } catch (err) {
+          // TODO: Error Handling
+          console.log(err);
+        }
       }}
     >
       {({
