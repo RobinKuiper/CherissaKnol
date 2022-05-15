@@ -1,0 +1,11 @@
+version: '3.3'
+
+services:
+  cherissaknol:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
+    ports:
+      - '8081:8082'

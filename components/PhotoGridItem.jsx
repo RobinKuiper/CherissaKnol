@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { urlHelpers } from '../helpers';
 import { CustomLink } from './CustomLink';
-import { SuspenseImg } from './SuspenseImg';
 
 export const PhotoGridItem = ({ size, id, title, category }) => {
   const [transform, setTransform] = useState('0deg scale(1)');
