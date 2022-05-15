@@ -35,8 +35,8 @@
   scrollbar-width: none; Firefox
 } */
 
-html,
 body,
+html,
 #__next {
   height: 100%;
 }

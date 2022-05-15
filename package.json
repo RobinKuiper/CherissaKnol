@@ -8,8 +8,8 @@
     "start": "next start -p 8082",
     "lint": "next lint",
     "export": "yarn build && next export -o build",
-    "dockerbuild": "docker build . -t robinkuiper/cherissa:latest",
-    "dockerpush": "docker push robinkuiper/cherissa:latest"
+    "dockerbuild": "docker build . -t robinkuiper/cherissaknol:latest",
+    "dockerpush": "docker push robinkuiper/cherissaknol:latest"
   },
   "dependencies": {
     "@fontsource/bebas-neue": "^4.5.7",

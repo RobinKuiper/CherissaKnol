@@ -1,11 +1,11 @@
 # Copy package.json and install dependencies
-FROM node:alpine as dependencies
+FROM node:lts as dependencies
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 # Copy app and dependencies and build
-FROM node:alpine as builder
+FROM node:lts as builder
 WORKDIR /app
 COPY . .
 RUN yarn add sharp
@@ -13,10 +13,11 @@ COPY --from=dependencies /app/node_modules ./node_modules
 RUN yarn build
 
 # Copy production folders and expose port
-FROM node:alpine as runner
+FROM node:lts as runner
 WORKDIR /app
 ENV NODE_ENV production
 
+# TODO: Check if everything is needed
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
