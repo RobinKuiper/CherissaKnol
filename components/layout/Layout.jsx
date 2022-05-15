@@ -131,7 +131,7 @@ export const Layout = ({ children }) => {
           </div>
         </aside>
 
-        <div className="h-full p-2 pt-1 pb-10 sm:px-10 sm:w-9/12 md:w-4/5 z-10">
+        <div className="min-h-screen p-2 pt-1 pb-10 sm:px-10 sm:w-9/12 md:w-4/5 z-10">
           {/* White Line Spacer */}
           <div className="hidden h-2 bg-white shadow-lg shadow-black sm:block" />
           <motion.div
