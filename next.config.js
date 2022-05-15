@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   trailingSlash: false,
   images: {
-    domains: ['i.imgur.com', 'picsum.photos'],
+    domains: ['i.imgur.com', 'picsum.photos'], //TODO: Remove for production
   }
 }
 

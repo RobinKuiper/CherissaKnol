@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import { Layout } from '../components';
+import Image from 'next/image';
+import { Layout, Title } from '../components';
 
 const about = () => {
   return (
@@ -10,7 +11,56 @@ const about = () => {
         <link rel="icon" href="/favicon.ico" /> */}
       </Head>
 
-      <div>About</div>
+      <div className="h-full flex flex-row">
+        <div className="h-full w-1/2">
+          <div
+            className="h-full mx-20 relative rounded"
+            style={{
+              backgroundImage: `url('https://picsum.photos/id/1027/1080/768')`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.5)',
+            }}
+          >
+            {/* <Image
+              src={`https://picsum.photos/id/1027/1080/768`}
+              alt="Cherissa Knol"
+              title="Cherissa Knol"
+              layout="fill"
+            /> */}
+          </div>
+        </div>
+
+        <div className="w-1/2 space-y-10">
+          <Title>About Me</Title>
+          <p>
+            Excepteur aliquip pariatur qui voluptate deserunt reprehenderit
+            Lorem laboris excepteur minim minim amet commodo consectetur.
+            Laborum Lorem consequat qui nisi nostrud deserunt mollit irure
+            cillum labore. Lorem laborum velit ipsum sit qui. Cupidatat ex
+            labore ea Lorem do et ut do officia ea dolore nulla duis.
+          </p>
+
+          <p>
+            Consectetur consectetur pariatur labore quis reprehenderit. Eu in
+            mollit excepteur laborum qui nulla velit. Mollit velit ullamco duis
+            qui non et ipsum minim cupidatat exercitation. Nisi ad aliqua ex
+            velit voluptate. Eu id exercitation proident do incididunt.
+            Reprehenderit excepteur aute dolor sunt ad dolor aute in culpa anim
+            dolor cupidatat ea veniam.
+          </p>
+
+          <p>
+            Ullamco esse ex anim velit veniam aliquip ullamco dolore consectetur
+            sunt amet tempor nisi aute. Excepteur anim cupidatat dolore ullamco
+            quis ex nostrud incididunt. Proident quis ea culpa nulla ipsum ea
+            laborum labore magna consequat velit ea. Officia sunt sit est esse
+            ea ex qui. Magna sunt esse eiusmod ex quis aliqua duis voluptate
+            magna qui aliquip cillum ea ullamco.
+          </p>
+        </div>
+      </div>
     </Layout>
   );
 };
