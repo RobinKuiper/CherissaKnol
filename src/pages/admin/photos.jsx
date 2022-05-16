@@ -2,7 +2,7 @@ import { useSession, signIn } from 'next-auth/react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Layout } from '../../components';
+import { Layout } from '../../../components';
 import { photoRepo } from '../../helpers';
 
 export default function Photos() {
