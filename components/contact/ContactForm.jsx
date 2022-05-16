@@ -15,18 +15,7 @@ const validationSchema = Yup.object().shape({
 });
 
 export const ContactForm = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
   const [success, setSuccess] = useState(false);
-
-  const onFocusLoss = (e) => {
-    const { name, value } = e.target;
-
-    if (name === 'name') setName(value);
-    if (name === 'email') setEmail(value);
-    if (name === 'message') setMessage(value);
-  };
 
   if (success)
     return (
@@ -46,7 +35,7 @@ export const ContactForm = () => {
   return (
     <Formik
       validationSchema={validationSchema}
-      initialValues={{ name, email, message }}
+      initialValues={{ name: '', email: '', message: '' }}
       onSubmit={async (values, { setSubmitting }) => {
         try {
           const response = await fetch('/api/contact', {
@@ -83,7 +72,6 @@ export const ContactForm = () => {
                 value={values.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                onFocusLoss={onFocusLoss}
                 error={errors.name}
                 touched={touched.name}
                 className={
@@ -104,7 +92,6 @@ export const ContactForm = () => {
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                onFocusLoss={onFocusLoss}
                 error={errors.email}
                 touched={touched.email}
                 className={
@@ -125,7 +112,6 @@ export const ContactForm = () => {
                 value={values.message}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                onFocusLoss={onFocusLoss}
                 error={errors.message}
                 touched={touched.message}
                 className={
