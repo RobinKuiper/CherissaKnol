@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Disallow: /admin/*
+Disallow: /api/*
+
+# Host
+Host: https://cherissa.robinkuiper.eu
+
+# Sitemaps
+Sitemap: https://cherissa.robinkuiper.eu/sitemap.xml

@@ -1,0 +1,5 @@
+Sitemap: http://localhost:3000/api/xml/photos-sitemap
+
+User-agent: *
+Disallow: /admin/*
+Disallow: /api/*
