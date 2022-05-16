@@ -26,3 +26,10 @@ model Photo {
   description String
   url         String
 }
+
+model Payment {
+  id        Int       @id @default(autoincrement())
+  orderId   String
+  status    String
+  createdAt DateTime
+}
