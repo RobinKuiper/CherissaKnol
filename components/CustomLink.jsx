@@ -1,8 +1,6 @@
 import Link from 'next/link';
 
-export const CustomLink = (props) => {
-  const { children, href, ...attr } = props;
-
+export const CustomLink = ({ children, href, ...attr }) => {
   const path = process.env.EXPORTED && href !== '/' ? `${href}.html` : href;
 
   return (
