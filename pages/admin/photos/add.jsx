@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Router from 'next/router';
 import { Layout } from '../../../components';
 import { PhotoForm } from '../../../components/admin/PhotoForm';
 
@@ -24,6 +25,7 @@ export const add = () => {
           rows: rows.value,
         }),
       });
+      Router.back();
     } catch (error) {
       console.error(error);
     }

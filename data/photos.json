@@ -1,18 +1,13 @@
 [
   {
-    "title": "The Shawshank Redemption",
     "id": "1",
-    "description": "Nulla ullamco mollit dolor qui adipisicing eiusmod exercitation ullamco.",
+    "title": " The Shawshank Redemption",
     "category": "landscapes",
-    "tags": [
-      "landscapes",
-      "nature",
-      "sunset"
-    ],
+    "url": "",
+    "description": "Nulla ullamco mollit dolor qui adipisicing eiusmod exercitation ullamco.",
     "price": "10.00",
-    "size": "big3",
-    "rows": 1,
-    "cols": 2
+    "cols": "2",
+    "rows": "1"
   },
   {
     "title": "The Godfather",
@@ -236,17 +231,14 @@
     "size": ""
   },
   {
-    "title": "The Lord of the Rings: The Fellowship of the Ring",
     "id": "19",
-    "description": "Nulla ullamco mollit dolor qui adipisicing eiusmod exercitation ullamco.",
+    "title": "The Lord of the Rings: The Fellowship of the Ring 2",
     "category": "nature",
-    "tags": [
-      "nature",
-      "beep",
-      "other"
-    ],
+    "url": "",
+    "description": "Nulla ullamco mollit dolor qui adipisicing eiusmod exercitation ullamco.",
     "price": "10.00",
-    "size": ""
+    "cols": "",
+    "rows": ""
   },
   {
     "title": "The Lord of the Rings: The Fellowship of the Ring",

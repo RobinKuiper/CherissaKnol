@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Router from 'next/router';
 import { Layout } from '../../../components';
 import { PhotoForm } from '../../../components/admin/PhotoForm';
 import { photoRepo } from '../../../helpers';
@@ -7,7 +8,8 @@ import { photoRepo } from '../../../helpers';
 const Photo = ({ photo }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { title, category, url, description, price, cols, rows } = e.target;
+    const { id, title, category, url, description, price, cols, rows } =
+      e.target;
 
     try {
       fetch('/api/photos', {
@@ -16,6 +18,7 @@ const Photo = ({ photo }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          id: id.value,
           title: title.value,
           category: category.value,
           url: url.value,
@@ -25,6 +28,7 @@ const Photo = ({ photo }) => {
           rows: rows.value,
         }),
       });
+      Router.back();
     } catch (error) {
       console.error(error);
     }
