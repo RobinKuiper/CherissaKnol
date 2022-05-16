@@ -3,34 +3,27 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
 import { Layout } from '../../../components';
-import { PhotoForm } from '../../../components/admin/PhotoForm';
-import prisma from '../../../lib/prisma';
+import { CategoryForm } from '../../../components/admin';
 
-const Add = ({ categories }) => {
+const Add = () => {
   const { data: session } = useSession();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { title, categoryId, url, description, price, cols, rows } = e.target;
+    const { name } = e.target;
 
-    const response = await fetch('/api/photos', {
+    const response = await fetch('/api/categories', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        title: title.value,
-        categoryId: categoryId.value,
-        url: url.value,
-        description: description.value,
-        price: price.value,
-        cols: cols.value,
-        rows: rows.value,
+        name: name.value,
       }),
     });
 
     if (response.ok) {
-      Router.push('/admin/photos');
+      Router.push('/admin/categories');
     } else {
       console.log('Error: ', response.statusText);
     }
@@ -39,16 +32,16 @@ const Add = ({ categories }) => {
   return (
     <Layout>
       <Head>
-        <title>Add Photo - Cherissa Knol</title>
+        <title>Add Category - Cherissa Knol</title>
       </Head>
 
       {session ? (
         <div className="flex flex-col items-center justify-center">
-          <h1 className="text-3xl font-bold text-center">Add Photo</h1>
+          <h1 className="text-3xl font-bold text-center">Add Category</h1>
           <p className="text-center">
-            <Link href="/admin/photos">Back to Photos</Link>
+            <Link href="/admin/categories">Back to Categories</Link>
           </p>
-          <PhotoForm onSubmit={handleSubmit} categories={categories} />
+          <CategoryForm onSubmit={handleSubmit} />
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center h-screen">
@@ -57,12 +50,6 @@ const Add = ({ categories }) => {
       )}
     </Layout>
   );
-};
-
-export const getServerSideProps = async () => {
-  const categories = await prisma.category.findMany();
-
-  return { props: { categories } };
 };
 
 export default Add;

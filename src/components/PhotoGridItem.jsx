@@ -3,7 +3,15 @@ import { useState } from 'react';
 import { urlHelpers } from '../helpers';
 import { CustomLink } from './CustomLink';
 
-export const PhotoGridItem = ({ size, id, title, category, rows, cols }) => {
+export const PhotoGridItem = ({
+  size,
+  id,
+  title,
+  category,
+  rows,
+  cols,
+  slug,
+}) => {
   const [transform, setTransform] = useState('0deg scale(1)');
 
   // let url =
@@ -42,9 +50,7 @@ export const PhotoGridItem = ({ size, id, title, category, rows, cols }) => {
         gridRow,
       }}
     >
-      <CustomLink
-        href={`/photos/${category}/${urlHelpers.toSeoFriendly(title)}`}
-      >
+      <CustomLink href={`/photos/${category.slug}/${slug}`}>
         <Image
           src={url}
           alt={title}

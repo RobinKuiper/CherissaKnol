@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const PhotoForm = ({ photo, onSubmit }) => {
+export const PhotoForm = ({ photo, categories, onSubmit }) => {
   return (
     <form className="w-full max-w-lg" onSubmit={onSubmit}>
       {photo && <input type="hidden" name="id" value={photo.id} />}
@@ -26,13 +26,26 @@ export const PhotoForm = ({ photo, onSubmit }) => {
         >
           Category
         </label>
-        <input
+        <select
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="categoryId"
+          name="categoryId"
+          defaultValue={(photo && photo.categoryId) || ''}
+        >
+          <option value="">Select a category</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
+        {/* <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="category"
           type="text"
           name="category"
           defaultValue={(photo && photo.category) || ''}
-        />
+        /> */}
       </div>
       <div className="mb-4">
         <label

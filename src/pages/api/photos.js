@@ -1,6 +1,6 @@
 import { getSession } from "next-auth/react";
-import { photoRepo } from "../../helpers";
-import adminPhotoRepo from "../../helpers/adminPhotoRepo";
+import { urlHelpers } from "../../helpers";
+import prisma from "../../lib/prisma";
 
 export default async function handler(req, res) {
   const session = await getSession({ req })
@@ -8,16 +8,20 @@ export default async function handler(req, res) {
   if (!session) res.status(401).send({ error: "Not authorized" });
 
   switch (req.method) {
+    // case "GET":
+    //   getPhotos(req, res);
+    //   break;
+
     case 'POST':
-      addPhoto(req, res);
+      return addPhoto(req, res);
       break;
 
     case 'PUT':
-      updatePhoto(req, res);
+      return updatePhoto(req, res);
       break;
 
     case 'DELETE':
-      deletePhoto(req, res);
+      return deletePhoto(req, res);
       break;
   }
 }
@@ -25,23 +29,42 @@ export default async function handler(req, res) {
 async function addPhoto(req, res) {
   const photo = req.body;
 
-  photo.id = (photoRepo.getPhotos().length + 1).toString();
+  photo.slug = urlHelpers.slugify(photo.title);
+  photo.price = Number(photo.price);
+  photo.cols = Number(photo.cols);
+  photo.rows = Number(photo.rows);
+  photo.categoryId = Number(photo.categoryId);
 
-  await adminPhotoRepo.add(photo);
+  const newPhoto = await prisma.photo.create({
+    data: {
+      ...photo,
+    },
+  });
 
-  res.status(200).send({ success: true });
+  return res.status(200).send(newPhoto);
 }
 
 async function updatePhoto(req, res) {
-  const photo = req.body;
-  const updatedPhoto = await adminPhotoRepo.update(photo);
+  const { id, ...photo } = req.body;
 
-  res.status(200).send({ success: true });
+  await prisma.photo.update({
+    where: {
+      id: Number(id),
+    },
+    data: photo,
+  })
+
+  return res.status(200).send({ success: true });
 }
 
 async function deletePhoto(req, res) {
-  const id = req.body.id;
-  const deletedPhoto = await adminPhotoRepo.delete(id);
+  const { id } = req.body;
 
-  res.status(200).send({ success: true });
+  await prisma.photo.delete({
+    where: {
+      id: Number(id),
+    },
+  })
+
+  return res.status(200).send({ success: true });
 }

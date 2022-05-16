@@ -37,19 +37,21 @@ export const ContactForm = () => {
       validationSchema={validationSchema}
       initialValues={{ name: '', email: '', message: '' }}
       onSubmit={async (values, { setSubmitting }) => {
-        try {
-          const response = await fetch('/api/contact', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values),
-          });
+        const result = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(values),
+        });
+
+        if (result.ok) {
           setSuccess(true);
           setSubmitting(false);
-        } catch (err) {
-          // TODO: Error Handling
-          console.log(err);
+        } else {
+          console.log('Error: ', result.statusText);
+          setSubmitting(false);
+          setSuccess(false);
         }
       }}
     >

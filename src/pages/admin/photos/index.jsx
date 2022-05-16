@@ -2,26 +2,28 @@ import { useSession, signIn } from 'next-auth/react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Layout } from '../../components';
-import { photoRepo } from '../../helpers';
+import { Layout } from '../../../components';
+import prisma from '../../../lib/prisma';
+import Router from 'next/router';
 
-export default function Photos() {
+export default function Photos({ photos }) {
   const { data: session } = useSession();
 
   const deletePhoto = async (photoId) => {
-    try {
-      await fetch('/api/photos', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${session.token}`,
-        },
-        body: JSON.stringify({
-          id: photoId,
-        }),
-      });
-    } catch (error) {
-      console.error(error);
+    const response = await fetch(`/api/photos/`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: photoId,
+      }),
+    });
+
+    if (response.ok) {
+      Router.push('/admin/photos');
+    } else {
+      console.log('Error: ', response.statusText);
     }
   };
 
@@ -46,10 +48,11 @@ export default function Photos() {
               <th>Actions</th>
             </tr>
 
-            {photoRepo.getPhotos().map((photo) => (
+            {photos.map((photo) => (
               <tr key={photo.id}>
                 <td className="p-1">{photo.id}</td>
                 <td className="p-1 w-[10%] relative">
+                  {console.log('photo', photo.photo)}
                   <Image
                     src={`https://picsum.photos/1080/768?random=${photo.id}`}
                     alt={photo.title}
@@ -59,7 +62,7 @@ export default function Photos() {
                   />
                 </td>
                 <td className="font-bold">{photo.title}</td>
-                <td>{photo.category}</td>
+                <td>{photo.category.name}</td>
                 <td>
                   <Link href={`/admin/photos/${photo.id}`}>Edit</Link> |{' '}
                   <button onClick={() => deletePhoto(photo.id)}>Delete</button>
@@ -75,4 +78,19 @@ export default function Photos() {
       )}
     </Layout>
   );
+}
+
+export async function getServerSideProps({ params }) {
+  // Get all photos from prisma and return props for each photo
+  const photos = await prisma.photo.findMany({
+    include: {
+      category: true,
+    },
+  });
+
+  return {
+    props: {
+      photos,
+    },
+  };
 }

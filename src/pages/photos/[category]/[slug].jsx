@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import React from 'react';
-import { Layout, Title } from '../../../components';
+import { CustomLink, Layout, Title } from '../../../components';
 import { photoRepo, urlHelpers } from '../../../helpers';
 import 'lightgallery.js/dist/css/lightgallery.css';
 import { LightgalleryItem, LightgalleryProvider } from 'react-lightgallery';
 import { Loading } from '../../../components';
 import Image from 'next/image';
+import prisma from '../../../lib/prisma';
 
 const Photo = ({ photo }) => {
   const { title } = photo;
@@ -56,7 +57,9 @@ const Photo = ({ photo }) => {
             {photo ? (
               <>
                 <Title>{photo.title}</Title>
-                <p>{photo.category}</p>
+                <CustomLink href={`/photos/${photo.category.slug}`}>
+                  {photo.category.name}
+                </CustomLink>
                 <div className="mt-10 text-xl flex flex-row space-x-10 items-center">
                   <p className="">Size</p>
                   <select
@@ -126,21 +129,34 @@ const Photo = ({ photo }) => {
 };
 
 export async function getStaticPaths() {
+  const photos = await prisma.photo.findMany({
+    include: {
+      category: true,
+    },
+  });
+
+  const paths = photos.map((photo) => ({
+    params: {
+      category: photo.category.slug,
+      slug: photo.slug,
+    },
+  }));
+
   return {
-    paths: photoRepo.getPhotos().map((photo) => {
-      return {
-        params: {
-          category: photo.category,
-          slug: urlHelpers.toSeoFriendly(photo.title),
-        },
-      };
-    }),
+    paths,
     fallback: false,
   };
 }
 
 export async function getStaticProps({ params }) {
-  const photo = photoRepo.getPhotoBySlug(params.slug);
+  const photo = await prisma.photo.findUnique({
+    where: {
+      slug: params.slug,
+    },
+    include: {
+      category: true,
+    },
+  });
 
   return {
     props: {
