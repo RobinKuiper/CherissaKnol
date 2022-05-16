@@ -11,6 +11,7 @@
       "name": "Next.js: debug client-side",
       "type": "pwa-chrome",
       "request": "launch",
+      "runtimeExecutable": "/usr/bin/brave-browser",
       "url": "http://localhost:3000"
     },
     {
@@ -22,7 +23,7 @@
       "serverReadyAction": {
         "pattern": "started server on .+, url: (https?://.+)",
         "uriFormat": "%s",
-        "action": "debugWithChrome"
+        "action": "openExternally"
       }
     }
   ]
