@@ -34,7 +34,7 @@ export const PhotoGridItem = ({ size, id, title, category, rows, cols }) => {
     <span
       className={
         size +
-        ` relative object-cover shadow-sm shadow-black cursor-pointer rounded ease-in-out duration-300 hover:shadow-2xl hover:shadow-gray-900 z-20 hover:z-50`
+        ` relative object-cover shadow-sm shadow-black rounded ease-in-out duration-300 hover:shadow-2xl hover:shadow-gray-900 z-20 hover:z-50`
       }
       style={{
         transform,

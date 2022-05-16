@@ -8,7 +8,7 @@ export const CategoryMenuItem = ({ path, title, toggleCollapse }) => {
     <CustomLink href={path}>
       <li
         className={`
-      pl-5 p-2 ease-in-out duration-500 hover:pl-6 cursor-pointer
+      pl-5 p-2 ease-in-out duration-500 hover:pl-6
       ${
         query.category && query.category === title.toLowerCase()
           ? 'bg-orange-300'

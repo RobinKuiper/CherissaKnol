@@ -5,7 +5,7 @@ export const CustomLink = ({ children, href, ...attr }) => {
 
   return (
     <Link href={path} {...attr}>
-      {children}
+      <div className="cursor-pointer">{children}</div>
     </Link>
   );
 };

@@ -42,7 +42,6 @@ export const Layout = ({ children }) => {
                     <Image
                       src="https://i.imgur.com/F4p34dJ.png"
                       alt="logo"
-                      className="cursor-pointer"
                       layout="intrinsic"
                       width="452px"
                       height="218px"
