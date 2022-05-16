@@ -2,11 +2,29 @@ version: '3.3'
 
 services:
   cherissaknol:
-    container_name: cherissa
+    container_name: cherissaknol
+    restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - ./:/app
     ports:
-      - '8081:8082'
+      - 8082:8082
+    environment:
+      - NEXTAUTH_SECRET=
+      - USERNAME=
+      - PASSWORD=
+      - GMAIL_USER=
+      - GMAIL_PASSWORD=
+
+  # cherissaknol:
+  #   image: robinkuiper/cherissaknol:latest
+  #   container_name: cherissaknol
+  #   ports:
+  #     - 8082:8082
+  #   environment:
+  #     - NEXTAUTH_SECRET=sfsg34gerg35g
+  #     - USERNAME=robin
+  #     - PASSWORD=Ro1988binJay20den10
+  #     - GMAIL_USER=smtpserver420@gmail.com
+  #     - GMAIL_PASSWORD=Ro1988bin
+  #   restart: unless-stopped
