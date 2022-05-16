@@ -28,6 +28,7 @@ const Custom404 = () => {
     };
 
     mail();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

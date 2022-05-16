@@ -6,12 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 8082",
-    "lint": "next lint",
     "export": "yarn build && next export -o build",
-    "dockerbuild": "docker build . -t robinkuiper/cherissaknol:latest",
-    "dockerpush": "docker push robinkuiper/cherissaknol:latest",
-    "next-sitemap": "next-sitemap",
-    "analyze": "ANALYZE=true yarn build"
+    "lint": "next lint",
+    "analyze": "ANALYZE=true yarn build",
+    "docker-build": "docker build . -t robinkuiper/cherissaknol:latest",
+    "docker-push": "docker push robinkuiper/cherissaknol:latest"
   },
   "dependencies": {
     "@fontsource/bebas-neue": "^4.5.7",

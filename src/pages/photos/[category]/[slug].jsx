@@ -15,7 +15,7 @@ const Photo = ({ photo }) => {
 
   useEffect(() => {
     setPrice(size * photo.price);
-  }, [size]);
+  }, [photo.price, size]);
 
   return (
     <Layout>
