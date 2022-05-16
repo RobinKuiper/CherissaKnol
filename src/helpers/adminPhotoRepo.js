@@ -1,6 +1,7 @@
 
 
 import photos from '../data/photos.json';
+import path from 'path';
 import { promises as fs } from 'fs';
 
 const adminPhotoRepo = {
@@ -8,7 +9,7 @@ const adminPhotoRepo = {
     const photoIndex = photos.findIndex((p) => p.id === photo.id);
     photos[photoIndex] = photo;
 
-    await fs.writeFile('./data/photos.json', JSON.stringify(photos, null, 2));
+    await fs.writeFile(path.join(__dirname, '../../data/photos.json'), JSON.stringify(photos, null, 2));
 
     return photo;
   },
@@ -20,7 +21,7 @@ const adminPhotoRepo = {
 
     photos.push(newPhoto);
 
-    await fs.writeFile('./data/photos.json', JSON.stringify(photos, null, 2));
+    await fs.writeFile(path.join(__dirname, '../data/photos.json'), JSON.stringify(photos, null, 2));
 
     return newPhoto;
   },
@@ -28,7 +29,7 @@ const adminPhotoRepo = {
     const photoIndex = photos.findIndex((p) => p.id === id);
     const deletedPhoto = photos.splice(photoIndex, 1);
 
-    await fs.writeFile('./data/photos.json', JSON.stringify(photos, null, 2));
+    await fs.writeFile(path.join(__dirname, '../data/photos.json'), JSON.stringify(photos, null, 2));
 
     return deletedPhoto;
   }

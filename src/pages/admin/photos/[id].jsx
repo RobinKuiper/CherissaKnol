@@ -6,13 +6,13 @@ import { PhotoForm } from '../../../components/admin/PhotoForm';
 import { photoRepo } from '../../../helpers';
 
 const Photo = ({ photo }) => {
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { id, title, category, url, description, price, cols, rows } =
       e.target;
 
     try {
-      fetch('/api/photos', {
+      const test = await fetch('/api/photos', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -28,6 +28,7 @@ const Photo = ({ photo }) => {
           rows: rows.value,
         }),
       });
+      console.log('test: ', test);
       Router.back();
     } catch (error) {
       console.error(error);
