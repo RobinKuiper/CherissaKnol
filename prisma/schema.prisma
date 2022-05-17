@@ -7,6 +7,13 @@ datasource db {
   url       = "file:./dev.db"
 }
 
+model User {
+  id          Int    @id @default(autoincrement())
+  email       String @unique
+  username    String @unique
+  password    String
+}
+
 model Category {
   id          Int       @id @default(autoincrement())
   name        String

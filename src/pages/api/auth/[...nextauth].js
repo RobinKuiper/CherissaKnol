@@ -1,6 +1,8 @@
 import NextAuth from "next-auth"
-import DiscordProvider from "next-auth/providers/discord";
+// import DiscordProvider from "next-auth/providers/discord";
 import CredentialsProvider from "next-auth/providers/credentials"
+import prisma from '../../../lib/prisma'
+import bcrypt from "bcryptjs";
 
 export default NextAuth({
   providers: [
@@ -17,14 +19,22 @@ export default NextAuth({
       async authorize(credentials, req) {
         const { username, password } = credentials
 
-        if (username === process.env.USERNAME && password === process.env.PASSWORD) {
+        const user = await prisma.user.findUnique({
+          where: {
+            username: username,
+          },
+        });
+
+        if (user && await bcrypt.compare(password, user.password)) {
           return {
-            id: 'admin',
-            name: 'Admin',
+            user: {
+              id: user.id,
+              username: user.username,
+            },
           }
         }
 
-        return null
+        return null;
       },
     }),
   ],

@@ -19,6 +19,7 @@
     "@paypal/react-paypal-js": "^7.7.0",
     "@prisma/client": "^3.14.0",
     "autoprefixer": "^10.4.7",
+    "bcryptjs": "^2.4.3",
     "formik": "^2.2.9",
     "framer-motion": "^6.3.3",
     "next": "12.1.6",
