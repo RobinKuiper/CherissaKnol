@@ -1,4 +1,3 @@
-import { useSession, signIn } from 'next-auth/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
@@ -7,8 +6,6 @@ import { PhotoForm } from '../../../components/admin/PhotoForm';
 import prisma from '../../../lib/prisma';
 
 const Add = ({ categories }) => {
-  const { data: session } = useSession();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { title, categoryId, url, description, price, cols, rows } = e.target;
@@ -42,19 +39,13 @@ const Add = ({ categories }) => {
         <title>Add Photo - Cherissa Knol</title>
       </Head>
 
-      {session ? (
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-3xl font-bold text-center">Add Photo</h1>
-          <p className="text-center">
-            <Link href="/admin/photos">Back to Photos</Link>
-          </p>
-          <PhotoForm onSubmit={handleSubmit} categories={categories} />
-        </div>
-      ) : (
-        <div className="flex flex-col items-center justify-center h-screen">
-          <h1 className="text-3xl font-bold text-center">Not Logged In</h1>
-        </div>
-      )}
+      <div className="flex flex-col items-center justify-center">
+        <h1 className="text-3xl font-bold text-center">Add Photo</h1>
+        <p className="text-center">
+          <Link href="/admin/photos">Back to Photos</Link>
+        </p>
+        <PhotoForm onSubmit={handleSubmit} categories={categories} />
+      </div>
     </Layout>
   );
 };
