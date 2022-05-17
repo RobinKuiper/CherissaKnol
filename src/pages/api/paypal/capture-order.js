@@ -81,7 +81,7 @@ export default async function handle(
       orderId,
     },
     data: {
-      status: response.result.status,
+      status: response.result.status === 'COMPLETED' ? 'PAID' : 'PENDING',
     },
   })
 

@@ -1,5 +1,14 @@
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaFacebook, FaInstagram } from 'react-icons/fa';
+import {
+  FaCartArrowDown,
+  FaEnvelope,
+  FaFacebook,
+  FaInstagram,
+  FaLayerGroup,
+  FaPeopleArrows,
+  FaPersonBooth,
+  FaPhotoVideo,
+} from 'react-icons/fa';
 import { CategoryMenuItem } from '../CategoryMenuItem';
 import { NavMenuItem } from '../NavMenuItem';
 import { useMediaQuery } from '../../helpers/contexts';
@@ -28,13 +37,13 @@ export const AdminLayout = ({ children }) => {
       <div className="flex flex-col sm:flex-row">
         <aside
           id="aside"
-          className="sm:flex sticky top-0 sm:w-3/12 md:w-1/5 sm:min-h-screen z-40"
+          className="sm:flex sticky top-0 sm:w-3/12 md:w-2/12 sm:min-h-screen z-40"
         >
           <div
             id="sidebar"
-            className="bg-white shadow-md shadow-black sm:relative"
+            className="bg-black shadow-lg shadow-black sm:relative"
           >
-            <div className="text-black">
+            <div className="text-white">
               {/* Header */}
               <div className="flex flex-row justify-between">
                 <div className="m-3 w-[25%] sm:w-full relative">
@@ -63,50 +72,45 @@ export const AdminLayout = ({ children }) => {
                 {/* Categories */}
                 <div id="categories" className="mt-16">
                   <ul className="text-3xl space-y-2">
-                    <li className="pl-2.5 text-sm font-bold">Sections</li>
                     <CategoryMenuItem
                       path="/admin/users"
                       title="Users"
+                      icon={<FaPeopleArrows />}
                       toggleCollapse={toggleCollapse}
                     />
                     <CategoryMenuItem
                       path="/admin/categories"
                       title="Categories"
+                      icon={<FaLayerGroup />}
                       toggleCollapse={toggleCollapse}
                     />
                     <CategoryMenuItem
                       path="/admin/photos"
                       title="Photos"
+                      icon={<FaPhotoVideo />}
+                      toggleCollapse={toggleCollapse}
+                    />
+                    <CategoryMenuItem
+                      path="/admin/customers"
+                      title="Customers"
+                      icon={<FaPersonBooth />}
+                      toggleCollapse={toggleCollapse}
+                    />
+                    <CategoryMenuItem
+                      path="/admin/orders"
+                      title="Orders"
+                      icon={<FaCartArrowDown />}
                       toggleCollapse={toggleCollapse}
                     />
                   </ul>
-                </div>
-                {/* Socials */}
-                <div id="socials" className="absolute bottom-10 w-full">
-                  <div className="flex flex-row justify-center content-around space-x-5 mt-5 text-2xl text-teal-800">
-                    <a href={constants.FB_URL} target="_blank" rel="noreferrer">
-                      <FaFacebook className="cursor-pointer ease-in-out duration-300 hover:text-orange-400" />
-                    </a>
-                    <a href={constants.IG_URL} target="_blank" rel="noreferrer">
-                      <FaInstagram className="cursor-pointer ease-in-out duration-300 hover:text-orange-400" />
-                    </a>
-                    <a
-                      href={`mailto:${constants.EMAIL}`}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <FaEnvelope className="cursor-pointer ease-in-out duration-300 hover:text-orange-400" />
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </aside>
 
-        <div className="min-h-screen p-2 pt-1 pb-10 sm:px-10 sm:w-9/12 md:w-4/5 z-10">
+        <div className="min-h-screen bg-[#292929] p-2 pt-1 pb-10 sm:px-10 sm:w-9/12 md:w-10/12 z-10">
           {/* White Line Spacer */}
-          <div className="hidden h-2 bg-white shadow-lg shadow-black sm:block" />
           <motion.div
             initial="initial"
             animate="enter"
@@ -144,7 +148,7 @@ export const AdminLayout = ({ children }) => {
       {/* Orange Footer Line */}
       <div
         id="footer-line"
-        className="fixed bottom-0 w-full h-1 bg-orange-400 z-50"
+        className="fixed bottom-0 w-full h-1 bg-teal-800 z-50"
         style={{ boxShadow: '0px -2px 10px 0px rgba(0,0,0,0.5)' }}
       />
     </main>
