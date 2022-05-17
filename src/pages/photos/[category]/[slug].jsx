@@ -2,12 +2,16 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import React from 'react';
 import { CustomLink, Layout, Title } from '../../../components';
-import { photoRepo, urlHelpers } from '../../../helpers';
 import 'lightgallery.js/dist/css/lightgallery.css';
 import { LightgalleryItem, LightgalleryProvider } from 'react-lightgallery';
 import { Loading } from '../../../components';
 import Image from 'next/image';
 import prisma from '../../../lib/prisma';
+import {
+  PayPalScriptProvider,
+  PayPalButtons,
+  FUNDING,
+} from '@paypal/react-paypal-js';
 
 const Photo = ({ photo }) => {
   const { title } = photo;
@@ -17,6 +21,45 @@ const Photo = ({ photo }) => {
   useEffect(() => {
     setPrice(size * photo.price);
   }, [photo.price, size]);
+
+  const createPayPalOrder = async () => {
+    const response = await fetch('/api/paypal/create-order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        photoId: photo.id,
+        size,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data.orderId;
+    } else {
+      console.log('Error: ', response.statusText);
+    }
+  };
+
+  const onApprove = async (data) => {
+    const response = await fetch('/api/paypal/capture-order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ orderId: data.orderID }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log('data: ', data);
+      return data;
+    } else {
+      console.log('response: ', response);
+      console.log('Error: ', response.statusText);
+    }
+  };
 
   return (
     <Layout>
@@ -75,43 +118,28 @@ const Photo = ({ photo }) => {
                   <p className="text-2xl">$ {price}</p>
                 </div>
 
-                <div className="sm:absolute bottom-0 flex flex-row justify-start w-full">
-                  <form
-                    action="https://www.paypal.com/cgi-bin/webscr"
-                    method="post"
-                    target="_top"
+                <div className="sm:absolute bottom-0  w-full">
+                  {' '}
+                  {/* flex flex-row justify-start */}
+                  <PayPalScriptProvider
+                    options={{
+                      'client-id': process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
+                      currency: 'EUR',
+                    }}
                   >
-                    <input type="hidden" name="cmd" value="_s-xclick" />
-                    <input
-                      type="hidden"
-                      name="hosted_button_id"
-                      value="JBCRBRUHHLLPS"
+                    <PayPalButtons
+                      style={{
+                        color: 'gold',
+                        shape: 'rect',
+                        label: 'buynow',
+                        height: 50,
+                      }}
+                      fundingSource={FUNDING.PAYPAL}
+                      createOrder={createPayPalOrder}
+                      onApprove={onApprove}
                     />
-                    <table>
-                      <tr>
-                        <td>
-                          <input type="hidden" name="on0" value="Size" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <input
-                            type="hidden"
-                            name="os0"
-                            value={
-                              size === 1
-                                ? 'Small'
-                                : size === 2
-                                ? 'Medium'
-                                : 'Big'
-                            }
-                          />
-                        </td>
-                      </tr>
-                    </table>
-                    <input type="hidden" name="currency_code" value="EUR" />
-                    <button className="button-76">Purchase</button>
-                  </form>
+                  </PayPalScriptProvider>
+                  {/* <button className="button-76">Purchase</button> */}
                 </div>
               </>
             ) : (

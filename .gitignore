@@ -3,6 +3,7 @@
 .env
 *.db*
 prisma/migrations
+*order.json
 
 # dependencies
 /node_modules

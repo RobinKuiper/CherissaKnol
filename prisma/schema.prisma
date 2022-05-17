@@ -25,11 +25,51 @@ model Photo {
   rows        Int
   description String
   url         String
+  orders      OrderDetails[]
 }
 
-model Payment {
-  id        Int       @id @default(autoincrement())
-  orderId   String
-  status    String
-  createdAt DateTime
+model Customer {
+  id                Int       @id @default(autoincrement())
+  payerId           String    @unique
+  name              String
+  surName           String
+  email             String    @unique
+  orders            Order[]
+  address1          String
+  address2          String
+  city              String
+  state             String
+  zip               String
+  country           String
+  shippingName      String
+  shippingAddress1  String
+  shippingAddress2  String
+  shippingCity      String
+  shippingState     String
+  shippingZip       String
+  shippingCountry   String
+  createdAt         DateTime  @default(now())
+}
+
+model Order {
+  id            Int       @id @default(autoincrement())
+  orderId       String      @unique
+  status        String
+  customerId    Int?
+  customer      Customer?   @relation(fields: [customerId], references: [id])
+  orderDetails  OrderDetails?
+  shippindDate  DateTime?
+  updatedAt     DateTime    @default(now())
+  createdAt     DateTime    @default(now())
+}
+
+model OrderDetails {
+  id          Int       @id @default(autoincrement())
+  orderId     Int       @unique
+  order       Order?    @relation(fields: [orderId], references: [id])
+  photoId     Int
+  photo       Photo?    @relation(fields: [photoId], references: [id])
+  quantity    Int
+  size        String
+  price       Int
 }
