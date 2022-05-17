@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
-import { Layout } from '../../../components';
+import { AdminLayout } from '../../../components/admin';
 import { CategoryForm } from '../../../components/admin';
 import prisma from '../../../lib/prisma';
 
@@ -29,7 +29,7 @@ const Category = ({ category }) => {
   };
 
   return (
-    <Layout>
+    <AdminLayout>
       <Head>
         <title>Edit Category - Cherissa Knol</title>
       </Head>
@@ -41,7 +41,7 @@ const Category = ({ category }) => {
         </p>
         <CategoryForm onSubmit={handleSubmit} category={category} />
       </div>
-    </Layout>
+    </AdminLayout>
   );
 };
 

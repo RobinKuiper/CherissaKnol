@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
-import { Layout } from '../../../components';
+import { AdminLayout } from '../../../components/admin';
 import { PhotoForm } from '../../../components/admin/PhotoForm';
 import prisma from '../../../lib/prisma';
 
@@ -36,7 +36,7 @@ const Photo = ({ photo, categories }) => {
   };
 
   return (
-    <Layout>
+    <AdminLayout>
       <Head>
         <title>Edit Photo - Cherissa Knol</title>
       </Head>
@@ -52,7 +52,7 @@ const Photo = ({ photo, categories }) => {
           categories={categories}
         />
       </div>
-    </Layout>
+    </AdminLayout>
   );
 };
 

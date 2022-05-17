@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
-import { Layout } from '../../../components';
+import { AdminLayout } from '../../../components/admin';
 import { UserForm } from '../../../components/admin';
 
 const Add = ({}) => {
@@ -29,7 +29,7 @@ const Add = ({}) => {
   };
 
   return (
-    <Layout>
+    <AdminLayout>
       <Head>
         <title>Add User - Cherissa Knol</title>
       </Head>
@@ -41,7 +41,7 @@ const Add = ({}) => {
         </p>
         <UserForm onSubmit={handleSubmit} />
       </div>
-    </Layout>
+    </AdminLayout>
   );
 };
 

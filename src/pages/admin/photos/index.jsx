@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Layout } from '../../../components';
+import { AdminLayout } from '../../../components/admin';
 import prisma from '../../../lib/prisma';
 import Router from 'next/router';
 
@@ -25,7 +25,7 @@ export default function Photos({ photos }) {
   };
 
   return (
-    <Layout>
+    <AdminLayout>
       <Head>
         <title>Admin - Cherissa Knol</title>
       </Head>
@@ -67,7 +67,7 @@ export default function Photos({ photos }) {
           ))}
         </table>
       </div>
-    </Layout>
+    </AdminLayout>
   );
 }
 

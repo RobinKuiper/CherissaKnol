@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
-import { Layout } from '../../../components';
+import { AdminLayout } from '../../../components/admin';
 import { UserForm } from '../../../components/admin';
 import prisma from '../../../lib/prisma';
 
@@ -31,7 +31,7 @@ const User = ({ user }) => {
   };
 
   return (
-    <Layout>
+    <AdminLayout>
       <Head>
         <title>Edit User - Cherissa Knol</title>
       </Head>
@@ -43,7 +43,7 @@ const User = ({ user }) => {
         </p>
         <UserForm onSubmit={handleSubmit} user={user} />
       </div>
-    </Layout>
+    </AdminLayout>
   );
 };
 

@@ -1,13 +1,14 @@
 import { signOut } from 'next-auth/react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { Layout, Title } from '../../components';
+import { Title } from '../../components';
+import { AdminLayout } from '../../components/admin';
 
 
 const Admin = () => {
 
   return (
-    <Layout>
+    <AdminLayout>
       <Head>
         <title>Admin Dashboard</title>
       </Head>
@@ -33,7 +34,7 @@ const Admin = () => {
           <button onClick={signOut}>Sign out</button>
         </p>
       </div>
-    </Layout>
+    </AdminLayout>
   )
 }
 
