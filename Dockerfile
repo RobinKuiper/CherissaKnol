@@ -15,6 +15,7 @@ COPY --from=dependencies /app/package.json /app/yarn.lock ./
 COPY --from=dependencies /app/node_modules ./node_modules
 RUN yarn prisma migrate deploy
 RUN yarn prisma generate
+RUN yarn prisma db seed
 RUN echo "Building..."
 RUN yarn build
 
@@ -24,14 +25,12 @@ WORKDIR /app
 ENV NODE_ENV production
 
 RUN echo "Copying production folders..."
-# TODO: Check if everything is needed
-#COPY --from=builder /app/data ./data
-# COPY --from=builder /app/prisma/migrations ./prisma/migrations
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/prisma ./prisma
 
 RUN echo "Exposing port..."
 EXPOSE 8082

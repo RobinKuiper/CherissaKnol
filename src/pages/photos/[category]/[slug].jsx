@@ -156,27 +156,27 @@ const Photo = ({ photo }) => {
   );
 };
 
-export async function getStaticPaths() {
-  const photos = await prisma.photo.findMany({
-    include: {
-      category: true,
-    },
-  });
+// export async function getStaticPaths() {
+//   const photos = await prisma.photo.findMany({
+//     include: {
+//       category: true,
+//     },
+//   });
 
-  const paths = photos.map((photo) => ({
-    params: {
-      category: photo.category.slug,
-      slug: photo.slug,
-    },
-  }));
+//   const paths = photos.map((photo) => ({
+//     params: {
+//       category: photo.category.slug,
+//       slug: photo.slug,
+//     },
+//   }));
 
-  return {
-    paths,
-    fallback: false,
-  };
-}
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const photo = await prisma.photo.findUnique({
     where: {
       slug: params.slug,

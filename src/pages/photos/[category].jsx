@@ -107,19 +107,19 @@ const Photos = ({ photos, category, nodes }) => {
   );
 };
 
-export async function getStaticPaths() {
-  const categories = await prisma.category.findMany();
+// export async function getStaticPaths() {
+//   const categories = await prisma.category.findMany();
 
-  const paths = categories.map((category) => ({
-    params: {
-      category: category.slug,
-    },
-  }));
+//   const paths = categories.map((category) => ({
+//     params: {
+//       category: category.slug,
+//     },
+//   }));
 
-  return { paths, fallback: false };
-}
+//   return { paths, fallback: false };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const category = await prisma.category.findUnique({
     where: {
       slug: params.category,
