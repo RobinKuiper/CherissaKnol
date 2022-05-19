@@ -31,8 +31,6 @@ async function addPhoto(req, res) {
 
   photo.slug = urlHelpers.slugify(photo.title);
   photo.price = Number(photo.price);
-  photo.cols = Number(photo.cols);
-  photo.rows = Number(photo.rows);
   photo.categoryId = Number(photo.categoryId);
 
   const newPhoto = await prisma.photo.create({

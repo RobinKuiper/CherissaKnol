@@ -39,6 +39,8 @@ async function addCategory(req, res) {
 async function updateCategory(req, res) {
   const { id, ...category } = req.body;
 
+  category.slug = urlHelpers.slugify(category.name);
+
   await prisma.category.update({
     where: {
       id: Number(id),

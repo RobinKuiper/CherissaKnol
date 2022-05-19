@@ -1,20 +1,15 @@
 import { motion } from 'framer-motion';
 import {
   FaCartArrowDown,
-  FaEnvelope,
-  FaFacebook,
-  FaInstagram,
   FaLayerGroup,
   FaPeopleArrows,
   FaPersonBooth,
   FaPhotoVideo,
 } from 'react-icons/fa';
 import { CategoryMenuItem } from '../CategoryMenuItem';
-import { NavMenuItem } from '../NavMenuItem';
 import { useMediaQuery } from '../../helpers/contexts';
 import { CustomLink } from '../CustomLink';
 import Image from 'next/image';
-import { constants } from '../../helpers';
 
 export const AdminLayout = ({ children }) => {
   const isBreakpoint = useMediaQuery(750);
@@ -37,13 +32,13 @@ export const AdminLayout = ({ children }) => {
       <div className="flex flex-col sm:flex-row">
         <aside
           id="aside"
-          className="sm:flex sticky top-0 sm:w-3/12 md:w-2/12 sm:min-h-screen z-40"
+          className="sm:flex sticky top-0 sm:w-3/12 md:w-1/5 sm:min-h-screen z-40"
         >
           <div
             id="sidebar"
-            className="bg-black shadow-lg shadow-black sm:relative"
+            className="bg-white shadow-lg shadow-black sm:relative"
           >
-            <div className="text-white">
+            <div className="text-black">
               {/* Header */}
               <div className="flex flex-row justify-between">
                 <div className="m-3 w-[25%] sm:w-full relative">
@@ -78,18 +73,18 @@ export const AdminLayout = ({ children }) => {
                       icon={<FaPeopleArrows />}
                       toggleCollapse={toggleCollapse}
                     />
-                    <CategoryMenuItem
-                      path="/admin/categories"
-                      title="Categories"
-                      icon={<FaLayerGroup />}
-                      toggleCollapse={toggleCollapse}
-                    />
+                    <li className="">
+                      <hr />
+                    </li>
                     <CategoryMenuItem
                       path="/admin/photos"
                       title="Photos"
                       icon={<FaPhotoVideo />}
                       toggleCollapse={toggleCollapse}
                     />
+                    <li className="">
+                      <hr />
+                    </li>
                     <CategoryMenuItem
                       path="/admin/customers"
                       title="Customers"
@@ -109,33 +104,33 @@ export const AdminLayout = ({ children }) => {
           </div>
         </aside>
 
-        <div className="min-h-screen bg-[#292929] p-2 pt-1 pb-10 sm:px-10 sm:w-9/12 md:w-10/12 z-10">
+        <div className="min-h-screen p-2 pt-1 pb-10 sm:px-10 sm:w-9/12 md:w-4/5 z-10">
           {/* White Line Spacer */}
           <motion.div
-            initial="initial"
-            animate="enter"
-            exit="exit"
-            transition={{ type: 'linear' }}
-            variants={{
-              enter: {
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 0.4,
-                  ease: [0.61, 1, 0.88, 1],
-                },
-              },
-              exit: {
-                opacity: 0,
-                x: 200,
-                y: 0,
-              },
-              initial: {
-                opacity: 0,
-                y: 8,
-              },
-            }}
-            className="h-full pt-3 sm:pt-10 text-white"
+            // initial="initial"
+            // animate="enter"
+            // exit="exit"
+            // transition={{ type: 'linear' }}
+            // variants={{
+            //   enter: {
+            //     opacity: 1,
+            //     y: 0,
+            //     transition: {
+            //       duration: 0.4,
+            //       ease: [0.61, 1, 0.88, 1],
+            //     },
+            //   },
+            //   exit: {
+            //     opacity: 0,
+            //     x: 200,
+            //     y: 0,
+            //   },
+            //   initial: {
+            //     opacity: 0,
+            //     y: 8,
+            //   },
+            // }}
+            className="h-full text-white"
           >
             {children}
           </motion.div>

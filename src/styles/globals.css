@@ -64,6 +64,10 @@ a {
   box-sizing: border-box;
 }
 
+/* .grid-stack-item-content {
+  background-color: #18bc9c;
+} */
+
 /** Photo Grid */
 .grid-wrapper {
   display: grid;

@@ -4,16 +4,39 @@ import Link from 'next/link';
 import { AdminLayout } from '../../../components/admin';
 import prisma from '../../../lib/prisma';
 import Router from 'next/router';
+import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
+import { useState } from 'react';
 
-export default function Photos({ photos }) {
-  const deletePhoto = async (photoId) => {
-    const response = await fetch(`/api/photos/`, {
+export default function Categories({ categories }) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { name } = e.target;
+
+    const response = await fetch('/api/categories', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name.value,
+      }),
+    });
+
+    if (response.ok) {
+      Router.push('/admin/photos');
+    } else {
+      console.log('Error: ', response.statusText);
+    }
+  };
+
+  const deleteCategory = async (categoryId) => {
+    const response = await fetch(`/api/categories/`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        id: photoId,
+        id: categoryId,
       }),
     });
 
@@ -30,58 +53,62 @@ export default function Photos({ photos }) {
         <title>Admin - Cherissa Knol</title>
       </Head>
 
-      <div className="flex flex-col items-center justify-center">
-        <h1 className="text-3xl font-bold text-center">Photos</h1>
-        <p className="text-center">
-          <Link href="/admin/photos/add">Add a photo</Link>
-        </p>
-        <table className="w-full">
-          <tr className="text-left">
-            <th>ID</th>
-            <th>Image</th>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Actions</th>
-          </tr>
+      <div>
+        <div className="flex flex-row justify-between border-b border-white pb-1 pt-1">
+          <div>
+            <form onSubmit={handleSubmit} className="flex flex-row">
+              <input
+                type="text"
+                placeholder="Category Name"
+                className="px-3 text-black"
+                name="name"
+              />
+              <button
+                type="submit"
+                className="py-2 px-4 bg-orange-400 text-black"
+              >
+                <FaPlus />
+              </button>
+            </form>
+          </div>
 
-          {photos.map((photo) => (
-            <tr key={photo.id}>
-              <td className="p-1">{photo.id}</td>
-              <td className="p-1 w-[10%] relative">
-                {console.log('photo', photo.photo)}
-                <Image
-                  src={`https://picsum.photos/1080/768?random=${photo.id}`}
-                  alt={photo.title}
-                  layout="responsive"
-                  width="100%"
-                  height="100%"
-                />
-              </td>
-              <td className="font-bold">{photo.title}</td>
-              <td>{photo.category.name}</td>
-              <td>
-                <Link href={`/admin/photos/${photo.id}`}>Edit</Link> |{' '}
-                <button onClick={() => deletePhoto(photo.id)}>Delete</button>
-              </td>
-            </tr>
+          <div>
+            <span className="text-3xl">Categories</span>
+          </div>
+        </div>
+
+        <div className="flex flex-col space-y-4 mt-10">
+          {categories.map((category) => (
+            <div key={category.id} className="flex flex-row space-x-4">
+              <Link href={`/admin/photos/${category.slug}`}>
+                <a className="text-2xl">{category.name}</a>
+              </Link>
+              <Link href={`/admin/photos/${category.slug}`}>
+                <a className="py-2 px-4 rounded-full bg-orange-400 text-black">
+                  <FaEdit />
+                </a>
+              </Link>
+              <button
+                className="py-2 px-4 rounded-full bg-orange-400 text-black"
+                onClick={() => deleteCategory(category.id)}
+              >
+                <FaTrash />
+              </button>
+            </div>
           ))}
-        </table>
+        </div>
       </div>
     </AdminLayout>
   );
 }
 
 export async function getServerSideProps({ params }) {
-  // Get all photos from prisma and return props for each photo
-  const photos = await prisma.photo.findMany({
-    include: {
-      category: true,
-    },
-  });
+  // Get all categories from prisma and return props for each photo
+  const categories = await prisma.category.findMany();
 
   return {
     props: {
-      photos,
+      categories,
     },
   };
 }

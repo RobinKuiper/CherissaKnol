@@ -19,6 +19,7 @@ model Category {
   name        String
   slug        String    @unique
   photos      Photo[]
+  grid        Grid?
 }
 
 model Photo {
@@ -28,11 +29,16 @@ model Photo {
   category    Category  @relation(fields: [categoryId], references: [id])
   categoryId  Int
   price       Int
-  cols        Int
-  rows        Int
   description String
   url         String
   orders      OrderDetails[]
+}
+
+model Grid {
+  id          Int       @id @default(autoincrement())
+  category    Category  @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  nodes       String
 }
 
 model Customer {

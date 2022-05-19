@@ -22,34 +22,6 @@ export const PhotoForm = ({ photo, categories, onSubmit }) => {
       <div className="mb-4">
         <label
           className="block text-gray-700 text-sm font-bold mb-2"
-          htmlFor="category"
-        >
-          Category
-        </label>
-        <select
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="categoryId"
-          name="categoryId"
-          defaultValue={(photo && photo.categoryId) || ''}
-        >
-          <option value="">Select a category</option>
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.name}
-            </option>
-          ))}
-        </select>
-        {/* <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="category"
-          type="text"
-          name="category"
-          defaultValue={(photo && photo.category) || ''}
-        /> */}
-      </div>
-      <div className="mb-4">
-        <label
-          className="block text-gray-700 text-sm font-bold mb-2"
           htmlFor="url"
         >
           Url
@@ -75,30 +47,6 @@ export const PhotoForm = ({ photo, categories, onSubmit }) => {
           type="number"
           name="price"
           defaultValue={(photo && photo.price) || ''}
-        />
-      </div>
-      <div className="mb-4">
-        <label
-          className="block text-gray-700 text-sm font-bold mb-2"
-          htmlFor="size"
-        >
-          Size
-        </label>
-        <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="cols"
-          type="text"
-          name="cols"
-          placeholder="Columns"
-          defaultValue={(photo && photo.cols) || ''}
-        />
-        <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="rows"
-          type="text"
-          name="rows"
-          placeholder="Rows"
-          defaultValue={(photo && photo.rows) || ''}
         />
       </div>
       <div className="mb-4">
