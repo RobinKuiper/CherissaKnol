@@ -47,16 +47,16 @@ const User = ({ user }) => {
   );
 };
 
-export async function getStaticPaths() {
-  const users = await prisma.user.findMany();
-  const paths = users.map((user) => ({
-    params: { id: user.id.toString() },
-  }));
+// export async function getStaticPaths() {
+//   const users = await prisma.user.findMany();
+//   const paths = users.map((user) => ({
+//     params: { id: user.id.toString() },
+//   }));
 
-  return { paths, fallback: false };
-}
+//   return { paths, fallback: false };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const user = await prisma.user.findUnique({
     where: { id: Number(params.id) },
   });

@@ -1,3 +1,5 @@
+// TODO: Not in use?
+
 const imgCache = {
   __cache: {},
   read(src) {
