@@ -2,9 +2,9 @@
 FROM node:lts as dependencies
 WORKDIR /app
 RUN echo "Installing dependencies..."
-COPY package.json yarn.lock ./
-RUN yarn add sharp
-RUN yarn install --frozen-lockfile
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm add sharp
+RUN pnpm install --frozen-lockfile
 
 # Copy app and dependencies and build
 FROM node:lts as builder
@@ -13,11 +13,11 @@ RUN echo "Copying app and dependencies..."
 COPY . .
 COPY --from=dependencies /app/package.json /app/yarn.lock ./
 COPY --from=dependencies /app/node_modules ./node_modules
-RUN yarn prisma migrate deploy
-RUN yarn prisma generate
-RUN yarn prisma db seed
+RUN pnpm prisma migrate deploy
+RUN pnpm prisma generate
+RUN pnpm prisma db seed
 RUN echo "Building..."
-RUN yarn build
+RUN pnpm build
 
 # Copy production folders and expose port
 FROM node:lts as runner
@@ -35,4 +35,4 @@ COPY --from=builder /app/prisma ./prisma
 RUN echo "Exposing port..."
 EXPOSE 8082
 RUN echo "Starting..."
-CMD ["yarn", "start"]
+CMD ["pnpm", "start"]

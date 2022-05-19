@@ -11,7 +11,11 @@
     "lint": "next lint",
     "analyze": "ANALYZE=true yarn build",
     "docker-build": "docker build . -t robinkuiper/cherissaknol:latest",
-    "docker-push": "docker push robinkuiper/cherissaknol:latest"
+    "docker-push": "docker push robinkuiper/cherissaknol:latest",
+    "prisma-generate": "pnpm prisma generate",
+    "prisma-deploy": "pnpm prisma migrate deploy",
+    "prisma-dev": "pnpm prisma migrate dev",
+    "prisma-seed": "pnpm prisma db seed"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
