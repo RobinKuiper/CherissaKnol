@@ -5,16 +5,18 @@ import { GridStack } from 'gridstack';
 import 'gridstack/dist/gridstack.css';
 import { Layout } from '../../components';
 import prisma from '../../lib/prisma';
+import { PhotoGridItem } from '../../components';
+import { motion } from 'framer-motion';
 
-const PhotoGridItem = ({ id }) => (
-  <div className="h-full w-full">
-    <Image
-      src={`https://picsum.photos/1080/768?random=${id}`}
-      alt="test"
-      layout="fill"
-    />
-  </div>
-);
+// const PhotoGridItem = ({ id }) => (
+//   <div className="h-full w-full">
+//     <Image
+//       src={`https://picsum.photos/1080/768?random=${id}`}
+//       alt="test"
+//       layout="fill"
+//     />
+//   </div>
+// );
 
 const Photos = ({ photos, category, nodes }) => {
   const refs = useRef({});
@@ -60,6 +62,12 @@ const Photos = ({ photos, category, nodes }) => {
 
       <div className={`grid-stack`}>
         {photos.map((photo) => {
+          const random = Math.floor(Math.random() * 2) + 1;
+          const minus = Math.floor(Math.random() * 2) === 0 ? '-' : '';
+          const degrees = Number(`${minus}${random}`);
+
+          const scale = photo.w > 2 || photo.h > 2 ? 1.1 : 1.3;
+
           return (
             <div
               id={photo.id}
@@ -71,9 +79,18 @@ const Photos = ({ photos, category, nodes }) => {
               gs-w={photo.w}
               gs-h={photo.h}
             >
-              <div className="grid-stack-item-content shadow">
-                <PhotoGridItem {...photo} />
-              </div>
+              <motion.div
+                whileHover={{
+                  scale: scale,
+                  rotate: degrees,
+                }}
+                transition={{
+                  duration: 0,
+                }}
+                className="grid-stack-item-content object-cover shadow-sm shadow-black rounded ease-in-out duration-300 hover:shadow-2xl hover:shadow-gray-900 z-20 hover:z-50"
+              >
+                <PhotoGridItem {...photo} category={category} />
+              </motion.div>
             </div>
           );
         })}
@@ -116,7 +133,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       photos: category.photos,
-      nodes: JSON.parse(category.grid.nodes),
+      nodes: category.grid ? JSON.parse(category.grid.nodes) : [],
       category,
     },
   };
