@@ -9,7 +9,7 @@ const nextConfig = {
   reactStrictMode: true,
   trailingSlash: false,
   images: {
-    domains: ['i.imgur.com', 'picsum.photos', 'www.google.nl'], //TODO: Remove for production
+    domains: ['i.imgur.com', 'picsum.photos', 'www.google.nl', 'images.pexels.com'], //TODO: Remove for production
   },
   // webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
   //   if (process.env.ANALYZE) {

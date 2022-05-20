@@ -256,6 +256,7 @@ export default function Overview({ photos, category, nodes }) {
           resizable: { handles: 'se' },
           staticGrid: false,
           margin: 5,
+          minWidth: 300,
         },
         '.grid-stack'
       );

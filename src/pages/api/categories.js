@@ -5,7 +5,7 @@ import prisma from "../../lib/prisma";
 export default async function handler(req, res) {
   const session = await getSession({ req })
 
-  if (!session) res.status(401).send({ error: "Not authorized" });
+  if (!session && req.method !== 'GET') res.status(401).send({ error: "Not authorized" });
 
   switch (req.method) {
     case 'GET':

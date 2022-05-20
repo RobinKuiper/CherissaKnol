@@ -3,7 +3,6 @@ import Head from 'next/head';
 import React from 'react';
 import Modal from 'react-modal';
 import { CustomLink, Layout, Title } from '../../../components';
-import 'lightgallery.js/dist/css/lightgallery.css';
 import { Loading } from '../../../components';
 import Image from 'next/image';
 import prisma from '../../../lib/prisma';

@@ -46,9 +46,12 @@ const Photos = ({ photos, category, nodes }) => {
           float: false,
           // cellHeight: '100px',
           minRow: 1,
+          maxRow: 0,
+          column: 12,
           animate: true,
           staticGrid: true,
           margin: 5,
+          minWidth: 300,
         },
         '.grid-stack'
       );

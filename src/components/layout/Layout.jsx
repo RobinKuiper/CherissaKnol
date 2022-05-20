@@ -142,21 +142,29 @@ export const Layout = ({ children }) => {
             transition={{ type: 'linear' }}
             variants={{
               enter: {
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 0.4,
-                  ease: [0.61, 1, 0.88, 1],
-                },
+                // opacity: 1,
+                // y: 0,
+                // transition: {
+                //   duration: 0.4,
+                //   ease: [0.61, 1, 0.88, 1],
+                // },
+                scale: [0, 1],
               },
               exit: {
-                opacity: 0,
-                x: 200,
-                y: 0,
+                // opacity: 0,
+                // x: 200,
+                // y: 0,
+                scale: [1, 0],
               },
               initial: {
-                opacity: 0,
-                y: 8,
+                // opacity: 0,
+                // y: 8,
+                scale: 0,
+              },
+              transition: {
+                duration: 0.4,
+                ease: [0.61, 1, 0.88, 1],
+                // duration: 0.4,
               },
             }}
             className="h-full pt-3 sm:pt-10 text-white"
