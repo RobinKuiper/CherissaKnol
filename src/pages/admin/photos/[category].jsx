@@ -7,7 +7,7 @@ import { GridStack } from 'gridstack';
 import 'gridstack/dist/gridstack.css';
 import 'gridstack/dist/gridstack-extra.css';
 import Image from 'next/image';
-import { FaCross, FaEdit, FaPlus, FaSave, FaWindowClose } from 'react-icons/fa';
+import { FaEdit, FaSave, FaWindowClose } from 'react-icons/fa';
 import Router from 'next/router';
 import { urlHelpers } from '../../../helpers';
 
@@ -26,7 +26,9 @@ const customStyles = {
   },
 };
 
-const Item = ({ id, title, setItems, items, saveGrid, toggleModal }) => {
+const Item = ({ id, title, url, setItems, items, saveGrid, toggleModal }) => {
+  const src = url; //`https://picsum.photos/1080/768?random=${id}`;
+
   const deletePhoto = async () => {
     const response = await fetch(`/api/photos/`, {
       method: 'DELETE',
@@ -49,11 +51,7 @@ const Item = ({ id, title, setItems, items, saveGrid, toggleModal }) => {
 
   return (
     <div className="h-full w-full relative">
-      <Image
-        src={`https://picsum.photos/1080/768?random=${id}`}
-        alt={title}
-        layout="fill"
-      />
+      <Image src={src} alt={title} layout="fill" />
       <div className="absolute top-0 right-0 flex flex-row">
         <button
           className=" text-white px-2 py-1 rounded-full"
@@ -138,10 +136,10 @@ export default function Overview({ photos, category, nodes }) {
     free = false;
 
     const photo = {
-      title: new Date().toISOString(),
+      title: new Date().toString(),
       categoryId: category.id,
-      url: 'https://url.com',
-      description: 'This is an description',
+      url: '/images/placeholder.webp',
+      description: '...',
       price: 155,
     };
 

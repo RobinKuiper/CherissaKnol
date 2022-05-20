@@ -6,8 +6,13 @@ import { useMediaQuery } from '../../helpers/contexts';
 import { CustomLink } from '../CustomLink';
 import Image from 'next/image';
 import { constants } from '../../helpers';
+import { useEffect, useState } from 'react';
+import useSWR from 'swr';
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export const Layout = ({ children }) => {
+  const { data: categories, error } = useSWR('/api/categories', fetcher);
   const isBreakpoint = useMediaQuery(750);
 
   const toggleCollapse = () => {
@@ -90,21 +95,15 @@ export const Layout = ({ children }) => {
                 <div id="categories" className="mt-16">
                   <ul className="text-3xl space-y-2">
                     <li className="pl-2.5 text-sm font-bold">Categories</li>
-                    <CategoryMenuItem
-                      path="/photos/landscapes"
-                      title="Landscapes"
-                      toggleCollapse={toggleCollapse}
-                    />
-                    <CategoryMenuItem
-                      path="/photos/still-life"
-                      title="Still-Life"
-                      toggleCollapse={toggleCollapse}
-                    />
-                    <CategoryMenuItem
-                      path="/photos/nature"
-                      title="Nature"
-                      toggleCollapse={toggleCollapse}
-                    />
+                    {categories &&
+                      categories.map((category) => (
+                        <CategoryMenuItem
+                          key={category.id}
+                          path={`/photos/${category.slug}`}
+                          title={category.name}
+                          toggleCollapse={toggleCollapse}
+                        />
+                      ))}
                   </ul>
                 </div>
                 {/* Socials */}

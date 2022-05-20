@@ -42,8 +42,8 @@ const Photos = ({ photos, category, nodes }) => {
           // cellHeight: '100px',
           minRow: 1,
           animate: true,
-          resizable: { handles: 'se' },
           staticGrid: true,
+          margin: 5,
         },
         '.grid-stack'
       );

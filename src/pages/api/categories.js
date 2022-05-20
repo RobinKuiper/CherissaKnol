@@ -8,6 +8,10 @@ export default async function handler(req, res) {
   if (!session) res.status(401).send({ error: "Not authorized" });
 
   switch (req.method) {
+    case 'GET':
+      return getCategories(req, res);
+      break;
+
     case 'POST':
       return addCategory(req, res);
       break;
@@ -20,6 +24,12 @@ export default async function handler(req, res) {
       return deleteCategory(req, res);
       break;
   }
+}
+
+async function getCategories(req, res) {
+  const categories = await prisma.category.findMany({});
+
+  return res.status(200).send(categories);
 }
 
 async function addCategory(req, res) {

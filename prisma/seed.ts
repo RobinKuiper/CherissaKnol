@@ -13,16 +13,6 @@ async function main() {
       password: await bcrypt.hash(process.env.ADMIN_PASSWORD, salt),
     },
   });
-
-  await prisma.user.upsert({
-    where: { email: process.env.CHERISSA_EMAIL },
-    update: {},
-    create: {
-      email: process.env.CHERISSA_EMAIL,
-      username: process.env.CHERISSA_USERNAME,
-      password: await bcrypt.hash(process.env.CHERISSA_PASSWORD, salt),
-    },
-  })
 }
 
 main()
