@@ -163,7 +163,6 @@ const Photo = ({ photo }) => {
 
       <Modal
         isOpen={isOpen}
-        // onAfterOpen={afterOpenModal}
         onRequestClose={toggleModal}
         style={customStyles}
         contentLabel="Lightbox"
@@ -189,26 +188,6 @@ const Photo = ({ photo }) => {
   );
 };
 
-// export async function getStaticPaths() {
-//   const photos = await prisma.photo.findMany({
-//     include: {
-//       category: true,
-//     },
-//   });
-
-//   const paths = photos.map((photo) => ({
-//     params: {
-//       category: photo.category.slug,
-//       slug: photo.slug,
-//     },
-//   }));
-
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }
-
 export async function getServerSideProps({ params }) {
   const photo = await prisma.photo.findUnique({
     where: {
@@ -227,14 +206,3 @@ export async function getServerSideProps({ params }) {
 }
 
 export default Photo;
-
-// import { useRouter } from 'next/router'
-//
-// const Post = () => {
-// const router = useRouter()
-// const { pid } = router.query
-//
-// return <p>Post: {pid}</p>
-// }
-//
-// export default Post

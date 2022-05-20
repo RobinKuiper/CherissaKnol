@@ -11,6 +11,10 @@ const collabs = () => {
       </Head>
 
       <Title>Collabs</Title>
+
+      {/* <button>Open Modal</button> */}
+
+      {/* <div className="fixed bg-[rgba(0,0,0,0.9)] z-50 inset-0" style={{}}></div> */}
     </Layout>
   );
 };

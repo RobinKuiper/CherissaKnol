@@ -1,12 +1,12 @@
 import { useRef, useEffect, createRef } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 import { GridStack } from 'gridstack';
 import 'gridstack/dist/gridstack.css';
 import { Layout } from '../../components';
 import prisma from '../../lib/prisma';
 import { PhotoGridItem } from '../../components';
 import { motion } from 'framer-motion';
+// import { useMediaQuery } from '../../helpers/contexts';
 
 // const PhotoGridItem = ({ id }) => (
 //   <div className="h-full w-full">
@@ -19,6 +19,10 @@ import { motion } from 'framer-motion';
 // );
 
 const Photos = ({ photos, category, nodes }) => {
+  // const is700 = useMediaQuery(700);
+  // const is850 = useMediaQuery(850);
+  // const is950 = useMediaQuery(950);
+  // const is1100 = useMediaQuery(1100);
   const refs = useRef({});
   const gridRef = useRef();
 
@@ -48,10 +52,11 @@ const Photos = ({ photos, category, nodes }) => {
           minRow: 1,
           maxRow: 0,
           column: 12,
-          animate: true,
+          animate: false,
           staticGrid: true,
           margin: 5,
-          minWidth: 300,
+          disableOneColumnMode: false,
+          // minWidth: 300,
         },
         '.grid-stack'
       );
@@ -61,6 +66,23 @@ const Photos = ({ photos, category, nodes }) => {
     photos.forEach(({ id }) => grid.makeWidget(refs.current[id].current));
     grid.commit();
   }, [photos]);
+
+  // useEffect(() => {
+  //   const grid = gridRef.current;
+  //   if (is700) {
+  //     console.log('700');
+  //     grid.column(1, 'moveScale').cellHeight('33vw');
+  //   } else if (is850) {
+  //     console.log('850');
+  //     grid.column(3, 'moveScale').cellHeight('33.3333vw');
+  //   } else if (is950) {
+  //     console.log('950');
+  //     grid.column(12, 'moveScale').cellHeight('10vw');
+  //   } else {
+  //     console.log('Anything else');
+  //     grid.column(12, 'moveScale').cellHeight('8.3333vw');
+  //   }
+  // }, [is700, is850, is950, is1100]);
 
   return (
     <Layout>
