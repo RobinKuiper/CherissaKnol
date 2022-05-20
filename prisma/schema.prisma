@@ -26,7 +26,7 @@ model Photo {
   id          Int       @id @default(autoincrement())
   title       String
   slug        String    @unique
-  category    Category  @relation(fields: [categoryId], references: [id])
+  category    Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId  Int
   price       Int       @default(-1)
   description String
@@ -36,7 +36,7 @@ model Photo {
 
 model Grid {
   id          Int       @id @default(autoincrement())
-  category    Category  @relation(fields: [categoryId], references: [id])
+  category    Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId  Int
   nodes       String
 }
