@@ -5,13 +5,16 @@ import {
   FaPeopleArrows,
   FaPersonBooth,
   FaPhotoVideo,
+  FaSignOutAlt,
 } from 'react-icons/fa';
 import { CategoryMenuItem } from '../CategoryMenuItem';
 import { useMediaQuery } from '../../helpers/contexts';
 import { CustomLink } from '../CustomLink';
 import Image from 'next/image';
+import { signOut, useSession } from 'next-auth/react';
 
 export const AdminLayout = ({ children }) => {
+  const { data: session } = useSession();
   const isBreakpoint = useMediaQuery(750);
 
   const toggleCollapse = () => {
@@ -99,6 +102,23 @@ export const AdminLayout = ({ children }) => {
                     />
                   </ul>
                 </div>
+              </div>
+
+              <div className="absolute bottom-5 left-0 right-0">
+                <ul className="text-3xl space-y-2">
+                  <li
+                    className={`pl-5 p-2 ease-in-out duration-500 hover:pl-6 hover:bg-orange-300`}
+                    onClick={toggleCollapse}
+                  >
+                    <button
+                      className="flex items-center space-x-4"
+                      onClick={signOut}
+                    >
+                      <FaSignOutAlt />
+                      <span>Logout</span>
+                    </button>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

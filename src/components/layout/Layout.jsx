@@ -7,11 +7,14 @@ import { CustomLink } from '../CustomLink';
 import Image from 'next/image';
 import { constants } from '../../helpers';
 import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
 import useSWR from 'swr';
+import Link from 'next/link';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export const Layout = ({ children }) => {
+  const { data: session } = useSession();
   const { data: categories, error } = useSWR('/api/categories', fetcher);
   const isBreakpoint = useMediaQuery(750);
 
@@ -162,6 +165,15 @@ export const Layout = ({ children }) => {
           </motion.div>
         </div>
       </div>
+
+      {session && (
+        <Link href="/admin">
+          <a className="fixed bottom-0 right-0 m-5 bg-orange-400 p-3 cursor-pointer z-50">
+            Admin
+          </a>
+        </Link>
+      )}
+
       {/* Lines */}
       <div id="line" className="one"></div>
       <div id="line" className="two"></div>
