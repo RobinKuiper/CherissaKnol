@@ -33,9 +33,12 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/entry.sh ./entry.sh
+
+RUN chmod +x ./entry.sh
 
 RUN npm i -g pnpm
 RUN echo "Exposing port..."
 EXPOSE 8082
 RUN echo "Starting..."
-CMD ["pnpm", "start"]
+CMD ["sh", "entry.sh"]
