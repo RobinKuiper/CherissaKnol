@@ -128,26 +128,27 @@ const Photo = ({ photo }) => {
               </div>
 
               <div className="sm:absolute bottom-0  w-full">
-                {' '}
                 {/* flex flex-row justify-start */}
-                <PayPalScriptProvider
-                  options={{
-                    'client-id': process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
-                    currency: 'EUR',
-                  }}
-                >
-                  <PayPalButtons
-                    style={{
-                      color: 'gold',
-                      shape: 'rect',
-                      label: 'buynow',
-                      height: 50,
+                {photo.price > 0 && (
+                  <PayPalScriptProvider
+                    options={{
+                      'client-id': process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
+                      currency: 'EUR',
                     }}
-                    fundingSource={FUNDING.PAYPAL}
-                    createOrder={createPayPalOrder}
-                    onApprove={onApprove}
-                  />
-                </PayPalScriptProvider>
+                  >
+                    <PayPalButtons
+                      style={{
+                        color: 'gold',
+                        shape: 'rect',
+                        label: 'buynow',
+                        height: 50,
+                      }}
+                      fundingSource={FUNDING.PAYPAL}
+                      createOrder={createPayPalOrder}
+                      onApprove={onApprove}
+                    />
+                  </PayPalScriptProvider>
+                )}
                 {/* <button className="button-76">Purchase</button> */}
               </div>
             </>

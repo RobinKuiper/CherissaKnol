@@ -28,7 +28,7 @@ model Photo {
   slug        String    @unique
   category    Category  @relation(fields: [categoryId], references: [id])
   categoryId  Int
-  price       Int
+  price       Int       @default(-1)
   description String
   url         String
   orders      OrderDetails[]

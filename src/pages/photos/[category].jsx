@@ -33,6 +33,11 @@ const Photos = ({ photos, category, nodes }) => {
     ...nodes.find((node) => Number(node.id) === Number(photo.id)),
   }));
 
+  photos = nodes.map((node) => ({
+    ...photos.find((photo) => Number(photo.id) === Number(node.id)),
+    ...node,
+  }));
+
   useEffect(() => {
     gridRef.current =
       gridRef.current ||

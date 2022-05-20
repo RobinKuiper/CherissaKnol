@@ -27,6 +27,7 @@ const customStyles = {
 };
 
 const Item = ({ id, title, url, setItems, items, saveGrid, toggleModal }) => {
+  const [showButtons, setShowButtons] = useState(false);
   const src = url; //`https://picsum.photos/1080/768?random=${id}`;
 
   const deletePhoto = async () => {
@@ -50,22 +51,28 @@ const Item = ({ id, title, url, setItems, items, saveGrid, toggleModal }) => {
   };
 
   return (
-    <div className="h-full w-full relative">
+    <div
+      className="h-full w-full relative"
+      onMouseEnter={() => setShowButtons(true)}
+      onMouseLeave={() => setShowButtons(false)}
+    >
       <Image src={src} alt={title} layout="fill" />
-      <div className="absolute top-0 right-0 flex flex-row">
-        <button
-          className=" text-white px-2 py-1 rounded-full"
-          onClick={() => toggleModal(id)}
-        >
-          <FaEdit />
-        </button>
-        <button
-          className=" text-white px-2 py-1 rounded-full"
-          onClick={deletePhoto}
-        >
-          <FaWindowClose />
-        </button>
-      </div>
+      {showButtons && (
+        <div className="absolute top-0 right-0 flex flex-row">
+          <button
+            className=" text-white px-2 py-1 rounded-full"
+            onClick={() => toggleModal(id)}
+          >
+            <FaEdit />
+          </button>
+          <button
+            className=" text-white px-2 py-1 rounded-full"
+            onClick={deletePhoto}
+          >
+            <FaWindowClose />
+          </button>
+        </div>
+      )}
     </div>
   );
 };
@@ -140,7 +147,7 @@ export default function Overview({ photos, category, nodes }) {
       categoryId: category.id,
       url: '/images/placeholder.webp',
       description: '...',
-      price: 155,
+      price: -1,
     };
 
     const response = await fetch('/api/photos', {
@@ -155,23 +162,7 @@ export default function Overview({ photos, category, nodes }) {
       photo = await response.json();
       setItems([...items, photo]);
       saveGrid();
-    } else {
-      console.log('Error: ', response.statusText);
-    }
-  };
-
-  const updatePhoto = async (data) => {
-    const response = await fetch(`/api/photos`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (response.ok) {
-      console.log('Updated'); // TODO: Toast or w/e
-      return true;
+      Router.push(Router.asPath);
     } else {
       console.log('Error: ', response.statusText);
     }
@@ -251,7 +242,7 @@ export default function Overview({ photos, category, nodes }) {
     };
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [photos]);
 
   useEffect(() => {
     gridRef.current =
