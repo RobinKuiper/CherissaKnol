@@ -43,8 +43,8 @@ const Contact = () => {
 
           <div className="mt-10 sm:mt-36 text-xs flex flex-col items-center">
             <p className="text-sm">Company</p>
-            <p>KVK: 123456789</p>
-            <p>BTW: 123456789</p>
+            <p>KVK: 88798208</p>
+            <p>BTW: NL004652129B89</p>
           </div>
         </div>
         <div className="sm:w-2/4 mt-10 sm:mt-0">
