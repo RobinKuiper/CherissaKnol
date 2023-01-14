@@ -51,10 +51,10 @@ export const Layout = ({ children }) => {
                 >
                   <CustomLink href="/">
                     <Image
-                      src="https://i.imgur.com/EB0Z99A.png"
+                      src="https://i.imgur.com/G9Ac9oI.gif"
                       alt="logo"
                       layout="intrinsic"
-                      width="250"
+                      width="250px"
                       height="250px"
                     />
                     {/* <Image
