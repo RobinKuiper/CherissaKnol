@@ -131,7 +131,7 @@ export const ContactForm = () => {
           </div>
           <button
             type="submit"
-            className="sendBtn relative w-full h-full block bg-orange-400 text-white font-bold py-2 mt-3"
+            className="sendBtn relative w-full h-full block bg-[#996515] text-white font-bold py-2 mt-3"
             disabled={isSubmitting}
           >
             <span className="z-30">Send</span>

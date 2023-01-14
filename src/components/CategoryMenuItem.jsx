@@ -11,9 +11,9 @@ export const CategoryMenuItem = ({ path, title, toggleCollapse, icon }) => {
       pl-5 p-2 ease-in-out duration-500 hover:pl-6
       ${
         query.category && query.category === title.toLowerCase()
-          ? 'bg-orange-300'
+          ? 'bg-[#D4AF37]'
           : ''
-      } hover:bg-orange-300`}
+      } hover:bg-[#D4AF37]`}
         onClick={toggleCollapse}
       >
         <div className="flex items-center space-x-4">

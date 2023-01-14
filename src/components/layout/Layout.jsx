@@ -40,20 +40,30 @@ export const Layout = ({ children }) => {
         >
           <div
             id="sidebar"
-            className="bg-white shadow-md shadow-black sm:relative"
+            className="bg-white shadow-md shadow-black sm:relative w-96"
           >
             <div className="text-black">
               {/* Header */}
               <div className="flex flex-row justify-between">
-                <div className="m-3 w-[25%] sm:w-full relative">
+                <div
+                  className="m-3 w-[25%] sm:w-full relative"
+                  style={{ textAlign: 'center' }}
+                >
                   <CustomLink href="/">
                     <Image
-                      src="https://i.imgur.com/F4p34dJ.png"
+                      src="https://i.imgur.com/EB0Z99A.png"
+                      alt="logo"
+                      layout="intrinsic"
+                      width="250"
+                      height="250px"
+                    />
+                    {/* <Image
+                      src="https://i.imgur.com/Bx41tAe.png"
                       alt="logo"
                       layout="intrinsic"
                       width="452px"
                       height="218px"
-                    />
+                    /> */}
                   </CustomLink>
                 </div>
 
@@ -111,7 +121,7 @@ export const Layout = ({ children }) => {
                 </div>
                 {/* Socials */}
                 <div id="socials" className="absolute bottom-10 w-full">
-                  <div className="flex flex-row justify-center content-around space-x-5 mt-5 text-2xl text-teal-800">
+                  <div className="flex flex-row justify-center content-around space-x-5 mt-5 text-2xl text-[#996515]">
                     <a href={constants.FB_URL} target="_blank" rel="noreferrer">
                       <FaFacebook className="cursor-pointer ease-in-out duration-300 hover:text-orange-400" />
                     </a>
@@ -190,7 +200,10 @@ export const Layout = ({ children }) => {
       <div
         id="footer-line"
         className="fixed bottom-0 w-full h-1 bg-orange-400 z-50"
-        style={{ boxShadow: '0px -2px 10px 0px rgba(0,0,0,0.5)' }}
+        style={{
+          boxShadow: '0px -2px 10px 0px rgba(0,0,0,0.5)',
+          background: '#C5B358',
+        }}
       />
     </main>
   );
