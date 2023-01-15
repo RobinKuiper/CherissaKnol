@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start -p 8082",
     "export": "pnpm build && next export -o build",
-    "start:full": "git stash && git pull && pnpm add sharp && pnpm prisma migrate deploy && pnpm build && pnpm start",
+    "start:full": "git stash && git pull && pnpm add sharp && pnpm install && pnpm prisma migrate deploy && pnpm build && pnpm start",
     "lint": "next lint",
     "analyze": "ANALYZE=true yarn build",
     "docker-build": "docker build . -t robinkuiper/cherissaknol:latest",
