@@ -1,14 +1,14 @@
 # Copy package.json and install dependencies
-FROM node:latest as dependencies
+FROM node:16.19.0 as dependencies
 WORKDIR /app
 RUN echo "Installing dependencies..."
 RUN npm i -g pnpm
-COPY ../package.json ../pnpm-lock.yaml ./
+COPY ./package.json ./pnpm-lock.yaml ./
 RUN pnpm add sharp
 RUN pnpm install --frozen-lockfile
 
 # Copy app and dependencies and build
-FROM node:latest as builder
+FROM node:16.19.0 as builder
 WORKDIR /app
 RUN echo "Copying app and dependencies..."
 COPY . .
@@ -22,7 +22,7 @@ RUN echo "Building..."
 RUN pnpm build
 
 # Copy production folders and expose port
-FROM node:latest as runner
+FROM node:16.19.0 as runner
 WORKDIR /app
 ENV NODE_ENV production
 
@@ -35,7 +35,7 @@ COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/entry.sh ./entry.sh
 
-RUN chmod +x ./docker/entry.sh
+RUN chmod +x ./entry.sh
 
 RUN npm i -g pnpm
 RUN echo "Exposing port..."
