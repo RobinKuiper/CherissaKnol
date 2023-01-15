@@ -193,16 +193,16 @@ export const Layout = ({ children }) => {
       )}
 
       {/* Lines */}
-      <div id="line" className="one"></div>
-      <div id="line" className="two"></div>
-      <div id="line" className="three"></div>
+      {/* <div id="line" className="one"></div> */}
+      {/* <div id="line" className="two"></div> */}
+      {/* <div id="line" className="three"></div> */}
       {/* Orange Footer Line */}
       <div
         id="footer-line"
         className="fixed bottom-0 w-full h-1 bg-orange-400 z-50"
         style={{
           boxShadow: '0px -2px 10px 0px rgba(0,0,0,0.5)',
-          background: '#C5B358',
+          background: 'white', //'#C5B358',
         }}
       />
     </main>

@@ -3,7 +3,7 @@ FROM node:lts as dependencies
 WORKDIR /app
 RUN echo "Installing dependencies..."
 RUN npm i -g pnpm
-COPY package.json pnpm-lock.yaml ./
+COPY ../package.json pnpm-lock.yaml ./
 RUN pnpm add sharp
 RUN pnpm install --frozen-lockfile
 
@@ -35,10 +35,10 @@ COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/entry.sh ./entry.sh
 
-RUN chmod +x ./entry.sh
+RUN chmod +x ./docker/entry.sh
 
 RUN npm i -g pnpm
 RUN echo "Exposing port..."
 EXPOSE 8082
 RUN echo "Starting..."
-CMD ["sh", "entry.sh"]
+CMD ["sh", "./docker/entry.sh"]

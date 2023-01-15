@@ -151,6 +151,7 @@ a {
   z-index: 0;
   /* background: #f49e4b; */
   background: #c5b358;
+  background: white;
   transform: rotate(-35deg);
 }
 
