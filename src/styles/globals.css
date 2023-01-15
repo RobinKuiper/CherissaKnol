@@ -175,11 +175,12 @@ a {
 }
 
 .hamburger__top-bun,
+.hamburger__middle-bun,
 .hamburger__bottom-bun {
   content: '';
   position: absolute;
   width: 24px;
-  height: 2px;
+  height: 4px;
   background: #000;
   transform: rotate(0);
   transition: all 0.5s;
@@ -190,11 +191,15 @@ a {
 }
 
 .hamburger__top-bun {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+}
+
+.hamburger__middle-bun {
+  transform: translateY(0px);
 }
 
 .hamburger__bottom-bun {
-  transform: translateY(3px);
+  transform: translateY(8px);
 }
 
 .open {
@@ -204,6 +209,10 @@ a {
 
 .open .hamburger__top-bun {
   transform: rotate(45deg) translateY(0px);
+}
+
+.open .hamburger__middle-bun {
+  opacity: 0;
 }
 
 .open .hamburger__bottom-bun {

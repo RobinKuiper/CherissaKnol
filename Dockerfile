@@ -18,4 +18,4 @@ RUN npm i -g pnpm
 RUN echo "Exposing port..."
 EXPOSE 8082
 RUN echo "Starting..."
-CMD ["sh", "./docker/entry.sh"]
+CMD ["sh", "entry.sh"]

@@ -28,6 +28,9 @@ export const Layout = ({ children }) => {
 
       const sidebar = document.getElementById('sidebar');
       sidebar.classList.toggle('min-h-screen');
+
+      const hamburger = document.getElementById('hamburger');
+      hamburger.classList.toggle('open');
     }
   };
 
@@ -73,6 +76,7 @@ export const Layout = ({ children }) => {
                   onClick={toggleCollapse}
                 >
                   <span className="hamburger__top-bun" />
+                  <span className="hamburger__middle-bun" />
                   <span className="hamburger__bottom-bun" />
                 </button>
               </div>
