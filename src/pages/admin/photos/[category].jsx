@@ -273,6 +273,7 @@ export default function Overview({ photos, category, nodes }) {
     grid.on('resizestop', async (event, element) => {
       saveGrid();
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
   return (
