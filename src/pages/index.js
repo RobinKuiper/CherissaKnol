@@ -12,7 +12,7 @@ export default function Home() {
       </Head>
 
       <div className='flex justify-center items-center h-full'>
-        <h1 className='text-8xl font-bold -mt-20 text-shadow'>Welcome</h1>
+        <h1 className='text-8xl font-bold -mt-20 text-shadow'>Welcome!</h1>
       </div>
     </Layout>
   )
